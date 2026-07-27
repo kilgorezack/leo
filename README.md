@@ -61,6 +61,15 @@ integration point in `assets/main.js` (search for **`Integration point`**).
 Drop in a `fetch()` to your availability API, CRM, or a form service
 (Formspree, Vercel Serverless Function, etc.) and you're collecting leads.
 
+## Editing CSS or JS — bump the version
+
+Asset links carry a version query (`/assets/styles.css?v=2`). Browsers cache
+files under `/assets/` for ten minutes and revalidate after that, so edits
+normally go live on their own. Bump the `?v=` number in `index.html`,
+`404.html`, and `v2.html` when you want a change to reach everyone
+*immediately* — it changes the URL, which forces a fresh download even from a
+cache that would otherwise still be holding the old file.
+
 ## Rebranding
 
 Open `assets/styles.css` — the first block is a set of brand tokens
