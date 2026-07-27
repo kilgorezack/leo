@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+     PRIMARY META
+     Replace the domain (https://northline.vercel.app) throughout
+     this file, sitemap.xml and robots.txt with your real domain.
+     ============================================================ -->
+<title>Northline Internet — Your evening is the only speed test that matters</title>
+<meta name="description" content="Answer seven questions about a normal weeknight and Northline tells you which internet plan actually fits your house. Whole-home coverage, local support, and a truck that shows up — not a dish that leaves the planet.">
+<meta name="author" content="Northline Communications">
+<meta name="theme-color" content="#0B131C">
+<meta name="color-scheme" content="dark light">
+<link rel="canonical" href="https://northline.vercel.app/">
+
+<!-- ============================================================
+     OPEN GRAPH / TWITTER
+     ============================================================ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Northline Communications">
+<meta property="og:title" content="Your evening is the only speed test that matters">
+<meta property="og:description" content="Seven questions about a normal weeknight, and we'll tell you which plan fits. Whole-home coverage, local people, and internet that never leaves the neighborhood.">
+<meta property="og:url" content="https://northline.vercel.app/">
+<meta property="og:image" content="https://northline.vercel.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Northline — a house at dusk with its windows lit.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your evening is the only speed test that matters">
+<meta name="twitter:description" content="Seven questions about a normal weeknight, and we'll tell you which plan fits.">
+<meta name="twitter:image" content="https://northline.vercel.app/assets/og-image.png">
+<meta name="twitter:image:alt" content="Northline — a house at dusk with its windows lit.">
+
+<!-- ============================================================
+     ICONS / MANIFEST
+     ============================================================ -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- ============================================================
+     FONTS + STYLES
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+
+<!-- ============================================================
+     STRUCTURED DATA
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://northline.vercel.app/#org",
+      "name": "Northline Communications",
+      "url": "https://northline.vercel.app/",
+      "logo": "https://northline.vercel.app/favicon.svg",
+      "foundingDate": "1954",
+      "slogan": "Your evening is the only speed test that matters.",
+      "description": "A local internet provider offering managed whole-home coverage and same-day local support."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://northline.vercel.app/#website",
+      "url": "https://northline.vercel.app/",
+      "name": "Northline Communications",
+      "publisher": { "@id": "https://northline.vercel.app/#org" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "Service",
+      "serviceType": "Residential internet service",
+      "provider": { "@id": "https://northline.vercel.app/#org" },
+      "areaServed": "Local service area",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Northline internet plans",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Settle In",
+            "price": "69",
+            "priceCurrency": "USD",
+            "description": "Whole-home coverage for a quieter house.",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "69",
+              "priceCurrency": "USD",
+              "unitCode": "MON"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Full House",
+            "price": "89",
+            "priceCurrency": "USD",
+            "description": "For everyone home at once — calls, homework, a game, two shows.",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "89",
+              "priceCurrency": "USD",
+              "unitCode": "MON"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Never Think About It",
+            "price": "119",
+            "priceCurrency": "USD",
+            "description": "For a house that runs on it, with a written coverage promise.",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "119",
+              "priceCurrency": "USD",
+              "unitCode": "MON"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ══════════════ NAV ══════════════ -->
+<header class="nav">
+  <div class="shell nav-in">
+    <a href="#top" class="logo" aria-label="Northline — home">
+      <svg class="logo-mark" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M13 2 24 10v14H2V10L13 2Z" stroke="#F0A93C" stroke-width="1.8" stroke-linejoin="round"/>
+        <rect x="10" y="15" width="6" height="9" fill="#F0A93C"/>
+      </svg>
+      <span class="logo-txt">Northline</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#quiz">Find your plan</a>
+      <a href="#compare">Why not satellite</a>
+      <a href="#plans">Plans</a>
+      <a href="#quiz" class="btn btn-sm">Start the quiz</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero" id="top">
+  <div class="shell hero-grid">
+    <div>
+      <p class="eyebrow on-dark">A seven-question quiz · about 60 seconds</p>
+      <h1 class="d1">Your evening is the only speed test that matters.</h1>
+      <p class="lede">Nobody sits down at 7pm hoping for a good number. They want the call to hold, the game to keep up, and the movie to just start. Answer seven questions about a normal weeknight at your place, and we'll tell you which plan fits.</p>
+      <div class="hero-cta">
+        <a href="#quiz" class="btn">Start the quiz
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#compare" class="btn-ghost">Thinking about satellite?</a>
+      </div>
+      <p class="hero-note"><span class="dot"></span> No account, no credit check, no sales call to opt out of.</p>
+    </div>
+
+    <div class="hero-house house-wrap">
+      <!-- signature: the house -->
+      <svg class="house" id="heroHouse" viewBox="0 0 420 280" role="img" aria-label="Illustration of a house with lit windows">
+        <defs>
+          <linearGradient id="lampGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFD489"/>
+            <stop offset="100%" stop-color="#F0A93C"/>
+          </linearGradient>
+          <radialGradient id="glowGrad">
+            <stop offset="0%" stop-color="#F0A93C" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#F0A93C" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- ground -->
+        <line x1="0" y1="252" x2="420" y2="252" stroke="rgba(244,246,245,.18)" stroke-width="1.5"/>
+
+        <!-- shop / outbuilding -->
+        <g id="grp-shop">
+          <ellipse class="glow" data-glow="shop" cx="45" cy="205" rx="42" ry="34" fill="url(#glowGrad)"/>
+          <path d="M14 178 45 158 76 178v74H14z" fill="#101B26" stroke="rgba(244,246,245,.3)" stroke-width="1.5" stroke-linejoin="round"/>
+          <rect class="win" data-win="shop" x="34" y="196" width="22" height="20" rx="2"/>
+        </g>
+
+        <!-- garage -->
+        <g id="grp-garage">
+          <ellipse class="glow" data-glow="garage" cx="368" cy="212" rx="46" ry="38" fill="url(#glowGrad)"/>
+          <path d="M320 166h96v86h-96z" fill="#101B26" stroke="rgba(244,246,245,.3)" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M316 166 368 140l52 26" fill="none" stroke="rgba(244,246,245,.3)" stroke-width="1.5" stroke-linejoin="round"/>
+          <rect class="win" data-win="garage" x="336" y="196" width="64" height="40" rx="3"/>
+        </g>
+
+        <!-- main house -->
+        <g id="grp-main">
+          <path d="M84 116h228v136H84z" fill="#101B26" stroke="rgba(244,246,245,.42)" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M70 118 198 34l128 84" fill="none" stroke="rgba(244,246,245,.42)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- upper windows -->
+          <ellipse class="glow" data-glow="bed1" cx="121" cy="150" rx="34" ry="30" fill="url(#glowGrad)"/>
+          <rect class="win" data-win="bed1" x="105" y="134" width="32" height="32" rx="2.5"/>
+
+          <ellipse class="glow" data-glow="office" cx="198" cy="150" rx="34" ry="30" fill="url(#glowGrad)"/>
+          <rect class="win" data-win="office" x="182" y="134" width="32" height="32" rx="2.5"/>
+
+          <ellipse class="glow" data-glow="bed2" cx="275" cy="150" rx="34" ry="30" fill="url(#glowGrad)"/>
+          <rect class="win" data-win="bed2" x="259" y="134" width="32" height="32" rx="2.5"/>
+
+          <!-- lower windows -->
+          <ellipse class="glow" data-glow="kitchen" cx="121" cy="212" rx="36" ry="32" fill="url(#glowGrad)"/>
+          <rect class="win" data-win="kitchen" x="103" y="192" width="36" height="40" rx="2.5"/>
+
+          <ellipse class="glow" data-glow="living" cx="275" cy="212" rx="36" ry="32" fill="url(#glowGrad)"/>
+          <rect class="win" data-win="living" x="257" y="192" width="36" height="40" rx="2.5"/>
+
+          <!-- door -->
+          <rect x="180" y="196" width="36" height="56" rx="3" fill="#101B26" stroke="rgba(244,246,245,.42)" stroke-width="1.5"/>
+          <ellipse class="glow" data-glow="porch" cx="198" cy="186" rx="30" ry="24" fill="url(#glowGrad)"/>
+          <circle class="win" data-win="porch" cx="198" cy="184" r="5"/>
+        </g>
+
+        <!-- porch / yard -->
+        <g id="grp-porch">
+          <ellipse class="glow" data-glow="yard" cx="198" cy="264" rx="60" ry="20" fill="url(#glowGrad)"/>
+          <rect class="win" data-win="yard" x="168" y="256" width="60" height="5" rx="2.5"/>
+        </g>
+      </svg>
+      <p class="house-cap"><span>A normal Tuesday, 8:04 PM</span> <span><b id="litCount">0</b> of 9 rooms working</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ QUIZ ══════════════ -->
+<section class="quiz-sec" id="quiz">
+  <div class="shell">
+    <div class="quiz-head">
+      <p class="eyebrow">The evening quiz</p>
+      <h2 class="d2">Walk us through a weeknight.</h2>
+      <p class="lede">We'll light up the house as you go. Seven questions, no wrong answers, and nothing about megabits.</p>
+    </div>
+
+    <div class="quiz-grid">
+      <!-- questions -->
+      <div class="card" id="quizCard">
+        <div class="rail" id="rail" aria-hidden="true"></div>
+        <div id="steps"></div>
+
+        <!-- RESULT -->
+        <div class="result" id="result" role="region" aria-live="polite">
+          <div class="res-head">
+            <div>
+              <p class="eyebrow">Your evening calls for</p>
+              <p class="res-plan" id="resName">—</p>
+            </div>
+            <div class="res-price">
+              <b id="resPrice">—</b>
+              <span>per month</span>
+            </div>
+          </div>
+
+          <div class="res-why">
+            <h4>Because you told us:</h4>
+            <ul class="why-list" id="resWhy"></ul>
+          </div>
+
+          <div class="res-why">
+            <h4>And here's where satellite would let you down:</h4>
+            <ul class="why-list" id="resGaps"></ul>
+          </div>
+
+          <div class="res-actions">
+            <a href="#plans" class="btn">See what's included
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <button class="retake" id="retake">Start over</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- live house -->
+      <aside class="quiz-aside">
+        <div class="aside-box">
+          <p class="eyebrow on-dark">Your house, so far</p>
+          <div class="house-wrap">
+            <svg class="house" id="quizHouse" viewBox="0 0 420 280" aria-hidden="true"></svg>
+            <p class="house-cap"><span id="quizStatus">Answer to light a room</span> <span><b id="litCount2">0</b>/9</span></p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ NIGHT / CONTRAST ══════════════ -->
+<section class="night" id="compare">
+  <div class="shell night-in">
+    <div class="night-head">
+      <p class="eyebrow on-dark">The other option</p>
+      <h2 class="d2">One of these connections leaves the planet. Yours doesn't have to.</h2>
+      <p class="lede on-dark">A dish on the roof is a genuine engineering marvel, and it's a real answer for a cabin at the end of a two-track. It is a strange thing to choose for a house on a street we already reached. Here's the same Tuesday evening, two ways.</p>
+    </div>
+
+    <!-- ── THE SIMULATOR ── -->
+    <div class="sim">
+
+      <div class="sim-controls">
+        <div class="ctl ctl-time">
+          <label class="ctl-lab" for="simTime">Time of evening</label>
+          <div class="time-row">
+            <input type="range" id="simTime" min="17" max="23" step="1" value="20"
+                   aria-label="Time of evening" aria-valuetext="8:00 PM">
+            <output class="time-out" id="timeOut">8:00 PM</output>
+          </div>
+          <p class="ctl-hint" id="timeHint">Everyone on your street is home and online.</p>
+        </div>
+
+        <div class="ctl">
+          <span class="ctl-lab" id="wxLab">Outside</span>
+          <div class="seg" role="group" aria-labelledby="wxLab">
+            <button class="seg-b on" data-wx="clear">Clear</button>
+            <button class="seg-b" data-wx="storm">Storm</button>
+            <button class="seg-b" data-wx="snow">Heavy snow</button>
+          </div>
+        </div>
+
+        <div class="ctl ctl-acts">
+          <span class="ctl-lab" id="actLab">What's going on in the house</span>
+          <div class="chips" role="group" aria-labelledby="actLab" id="chips"></div>
+        </div>
+      </div>
+
+      <div class="panes">
+        <section class="pane theirs" id="paneDish" aria-labelledby="dishName">
+          <header class="pane-top">
+            <div>
+              <span class="col-tag">A dish on the roof</span>
+              <h3 id="dishName">Up through the weather, and back</h3>
+            </div>
+            <span class="verdict" id="dishVerdict">Fine</span>
+          </header>
+          <svg class="wave" id="waveDish" viewBox="0 0 300 44" preserveAspectRatio="none" aria-hidden="true">
+            <polyline fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points=""/>
+          </svg>
+          <ul class="rows" id="rowsDish"></ul>
+          <p class="pane-empty" id="emptyDish">Turn something on above and watch what happens.</p>
+        </section>
+
+        <section class="pane ours" aria-labelledby="lineName">
+          <header class="pane-top">
+            <div>
+              <span class="col-tag">Internet from down the road</span>
+              <h3 id="lineName">It never leaves the neighborhood</h3>
+            </div>
+            <span class="verdict good" id="lineVerdict">Ready</span>
+          </header>
+          <svg class="wave" id="waveLine" viewBox="0 0 300 44" preserveAspectRatio="none" aria-hidden="true">
+            <polyline fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" points=""/>
+          </svg>
+          <ul class="rows" id="rowsLine"></ul>
+          <p class="pane-empty" id="emptyLine">Same house, same evening, nothing to report.</p>
+        </section>
+      </div>
+
+      <div class="why-note" id="whyNote" role="status" aria-live="polite">
+        <span class="why-key">Why</span>
+        <p id="whyText">Drag the time, change the weather, and turn things on. The house on the right never changes.</p>
+      </div>
+    </div>
+
+    <!-- structural differences that don't depend on the hour -->
+    <ul class="fixed-beats">
+      <li><b>Coverage stops at the box</b>A dish gets you one router and wishes you luck. The back bedroom is your problem to solve and your equipment to buy. Ours covers the whole house, garage and porch included.</li>
+      <li><b>Nobody is watching but you</b>Support is a form you fill out. We watch your connection and usually fix it before you'd have noticed.</li>
+      <li><b>You can't mail a truck</b>When it really breaks, you get a replacement in the post and a shipping estimate. We get in a vehicle.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════ PLANS ══════════════ -->
+<section class="plans" id="plans">
+  <div class="shell">
+    <div class="plans-head">
+      <p class="eyebrow">Three plans</p>
+      <h2 class="d2">Priced by what your house needs, not by a number.</h2>
+      <p class="lede">Every plan includes managed whole-home coverage, the app, and people who live here. The difference is how much of your evening we take off your plate.</p>
+    </div>
+
+    <div class="plan-grid" id="planGrid">
+      <article class="plan" data-plan="settle">
+        <span class="plan-flag">Your match</span>
+        <h3 class="plan-name">Settle In</h3>
+        <p class="plan-for">For a quieter house. A show, a scroll, a few devices, and nothing that has to be perfect.</p>
+        <p class="plan-price"><b>$69</b><span>/mo</span></p>
+        <ul class="feats">
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Whole-home coverage we set up, tune, and keep working</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>An app that shows everything on your network and lets you pause any of it</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Guest access you can send in a text</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Protection that blocks sketchy sites for every device, automatically</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Local support, no phone tree</li>
+        </ul>
+        <a href="#signup" class="btn-line">Choose Settle In</a>
+      </article>
+
+      <article class="plan" data-plan="fullhouse">
+        <span class="plan-flag">Your match</span>
+        <h3 class="plan-name">Full House</h3>
+        <p class="plan-for">For everyone home at once. Work calls, homework, a game, and two shows, all on a Tuesday.</p>
+        <p class="plan-price"><b>$89</b><span>/mo</span></p>
+        <ul class="feats">
+          <li class="inherit">Everything in Settle In, plus:</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Coverage extended to the rooms that don't work today, garage and porch included</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Calls and games handled first, so the meeting doesn't lose to the movie</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Time limits and content filters that follow the kid, not the device</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>We watch for trouble and fix it before you call</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Alerts when something new joins your network</li>
+        </ul>
+        <a href="#signup" class="btn">Choose Full House</a>
+      </article>
+
+      <article class="plan" data-plan="never">
+        <span class="plan-flag">Your match</span>
+        <h3 class="plan-name">Never Think About It</h3>
+        <p class="plan-for">For a house that runs on it. Two people working, cameras rolling, and no appetite for troubleshooting.</p>
+        <p class="plan-price"><b>$119</b><span>/mo</span></p>
+        <ul class="feats">
+          <li class="inherit">Everything in Full House, plus:</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>A room-by-room walk with a technician, and a written coverage promise</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Front-of-line support, and a truck the next day when it needs one</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full identity and device protection for everyone in the house</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>We'll get your cameras, thermostats and doorbells connected and keep them that way</li>
+          <li><span class="tick"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#16283A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>A yearly tune-up, whether or not anything's wrong</li>
+        </ul>
+        <a href="#signup" class="btn-line">Choose Never Think About It</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ LOCAL ══════════════ -->
+<section class="local">
+  <div class="shell local-grid">
+    <div>
+      <p class="eyebrow">Why it matters who you buy from</p>
+      <h2 class="d2">You can't mail a truck.</h2>
+      <p class="lede">When something goes sideways on a Sunday, the question isn't what your connection is made of. It's whether anybody is going to come fix it. We're twelve minutes away.</p>
+    </div>
+    <div class="proof">
+      <div><b>12 min</b><span>Average drive to a customer's door</span></div>
+      <div><b>Same day</b><span>Most service visits, most of the year</span></div>
+      <div><b>0</b><span>Phone trees between you and a person</span></div>
+      <div><b>Since 1954</b><span>Answering to neighbors, not shareholders</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="foot" id="signup">
+  <div class="shell">
+    <div class="foot-cta">
+      <h2 class="d2">Check your address.</h2>
+      <p class="lede on-dark">Thirty seconds to find out what's available at your place, and what your evenings could look like.</p>
+
+      <form class="addr-form" id="addrForm" novalidate>
+        <label class="addr-field">
+          <span class="sr-only">Your street address</span>
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5c-2.8 0-5 2.1-5 4.9 0 3.5 5 8.1 5 8.1s5-4.6 5-8.1c0-2.8-2.2-4.9-5-4.9Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6.4" r="1.7" stroke="currentColor" stroke-width="1.3"/></svg>
+          <input type="text" name="address" autocomplete="street-address" inputmode="text" placeholder="Street address or ZIP" required>
+        </label>
+        <button type="submit" class="btn">See what's available
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+      <p class="addr-note" id="addrNote"><span class="dot"></span> No account and no credit check to look.</p>
+
+      <div class="addr-ok" id="addrOk" role="status" aria-live="polite">
+        <span class="tick"><svg viewBox="0 0 14 14" fill="none"><path d="M2.5 7.4 5.5 10.5 11.5 3.8" stroke="#0B131C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Thanks — we'll check <b id="addrOkWhere">your address</b> and someone local will be in touch.</span>
+      </div>
+    </div>
+
+    <div class="foot-bar">
+      <span>© 2026 Northline Communications</span>
+      <nav aria-label="Footer">
+        <a href="#quiz">Find your plan</a>
+        <a href="#plans">Plans</a>
+        <a href="#compare">Compare</a>
+        <a href="#signup">Support</a>
+      </nav>
+    </div>
+    <p class="fineprint">Pricing shown is for a standard residential installation and does not include taxes or fees. Coverage promise applies to the primary living area of the home. Comparisons describe general characteristics of satellite-delivered residential internet service and individual experience will vary by provider, location, and conditions.</p>
+  </div>
+</footer>
+
+<script src="/assets/main.js" defer></script>
+</body>
+</html>

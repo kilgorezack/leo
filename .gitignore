@@ -1,0 +1,17 @@
+# Dependencies (only if you later add a build step)
+node_modules/
+
+# Vercel
+.vercel/
+
+# Local env
+.env
+.env.local
+.env.*.local
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
