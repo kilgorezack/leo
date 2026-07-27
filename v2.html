@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A year of evenings — OtterDrift</title>
+<title>365 nights. Let's count them. — OtterDrift</title>
 <meta name="description" content="Anyone looks good on a clear night in July. Play out a whole year of evenings at your place and see how many a dish on the roof would have taken from you.">
 <meta name="author" content="OtterDrift Communications">
 <meta name="theme-color" content="#0B131C">
@@ -13,7 +13,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OtterDrift Communications">
-<meta property="og:title" content="Anyone looks good in July">
+<meta property="og:title" content="365 nights. Let's count them.">
 <meta property="og:description" content="Play out a whole year of evenings at your place and count the ones a dish on the roof would have taken.">
 <meta property="og:url" content="https://otterdrift.vercel.app/v2">
 <meta property="og:image" content="https://otterdrift.vercel.app/assets/og-image.png">
@@ -21,7 +21,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Anyone looks good in July">
+<meta name="twitter:title" content="365 nights. Let's count them.">
 <meta name="twitter:description" content="A whole year of evenings, played out night by night.">
 <meta name="twitter:image" content="https://otterdrift.vercel.app/assets/og-image.png">
 
@@ -67,9 +67,8 @@
 <section class="v2-hero">
   <div class="shell">
     <p class="eyebrow on-dark">The long view</p>
-    <h1 class="d1">Anyone looks good in July.</h1>
-    <p class="lede">A clear Tuesday in summer is an easy night to win. Every connection ever sold wins that one. The question is the other three hundred and sixty-four — the sleet in February, the Sunday everybody's home, the night it matters most. So let's play the whole year and count.</p>
-    <p class="v2-hero-note"><span class="dot"></span> Nothing to fill in. Pick a climate, press play, watch your year go by.</p>
+    <h1 class="d1">365 nights. Let's count them.</h1>
+    <p class="lede">A clear Tuesday in summer is an easy night to win. Every connection ever sold wins that one. The question is the other three hundred and sixty-four — the sleet in February, the Sunday everybody's home, the night it matters most. So here's the whole year, one square at a time.</p>
   </div>
 </section>
 
@@ -99,9 +98,23 @@
       <!-- grid -->
       <div class="year-body">
         <div class="year-top">
-          <div>
-            <p class="year-title" id="gridTitle">Your year on a dish</p>
-            <p class="year-sub" id="gridSub">Every square is one evening at your place.</p>
+          <div class="view-switch" role="group" aria-label="Which service to show">
+            <button class="view-b on" data-view="dish" aria-pressed="true">
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="13.2" r="1.7" fill="currentColor"/>
+                <path d="M5.3 9.9a5.2 5.2 0 0 1 7.4 0M2.7 7a8.9 8.9 0 0 1 12.6 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              A dish on the roof
+            </button>
+            <button class="view-b" data-view="ours" aria-pressed="false">
+              <svg viewBox="0 0 26 26" fill="none" aria-hidden="true">
+                <path d="M4.8 16C4.8 13.6 6 11.6 7.9 10.4A2.05 2.05 0 1 1 10.6 8.6C11.35 8.35 12.15 8.2 13 8.2C13.85 8.2 14.65 8.35 15.4 8.6A2.05 2.05 0 1 1 18.1 10.4C20 11.6 21.2 13.6 21.2 16C21.2 19.9 17.5 22.3 13 22.3C8.5 22.3 4.8 19.9 4.8 16Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <circle cx="10.2" cy="14.6" r="1.05" fill="currentColor"/>
+                <circle cx="15.8" cy="14.6" r="1.05" fill="currentColor"/>
+                <ellipse cx="13" cy="18.5" rx="3.4" ry="2.3" fill="currentColor"/>
+              </svg>
+              OtterDrift
+            </button>
           </div>
           <div class="legend" aria-hidden="true">
             <span><i class="sw-clean"></i> Fine</span>
@@ -109,6 +122,7 @@
             <span><i class="sw-lost"></i> Lost the evening</span>
           </div>
         </div>
+        <p class="year-sub" id="gridSub">Every square is one evening at your place. Press play to run the year.</p>
 
         <div class="grid-scroll">
           <div class="grid-inner">
@@ -143,8 +157,8 @@
 
       <!-- the flip -->
       <div class="flip">
-        <p id="flipText">Same house, same weather, same year — now run it on a line that never leaves the neighborhood.</p>
-        <button class="btn" id="flip" disabled>Run the same year with us</button>
+        <p id="flipText">Play the year, then switch the two above to run the exact same twelve months on a line that never leaves the neighborhood.</p>
+        <button class="btn" id="flip">See the same year with OtterDrift</button>
       </div>
     </div>
   </div>

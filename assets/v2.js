@@ -111,8 +111,9 @@
 
   var elGrid=$('#grid'), elMonths=$('#months'), elLog=$('#log'), elLogEmpty=$('#logEmpty'),
       elLogHead=$('#logHead'), elPlay=$('#play'), elFlip=$('#flip'), elFlipText=$('#flipText'),
-      elTitle=$('#gridTitle'), elSub=$('#gridSub'), elVerdict=$('#verdict'), elRunNote=$('#runNote'),
-      elA11y=$('#gridA11y'), elTL=$('#tLost'), elTR=$('#tRough'), elTC=$('#tClean');
+      elSub=$('#gridSub'), elVerdict=$('#verdict'), elRunNote=$('#runNote'),
+      elA11y=$('#gridA11y'), elTL=$('#tLost'), elTR=$('#tRough'), elTC=$('#tClean'),
+      elViews=document.querySelectorAll('.view-b');
 
   if(!elGrid) return;
 
@@ -284,8 +285,8 @@
     }).join('');
     elLogEmpty.style.display = picks.length ? 'none' : 'block';
 
-    elFlip.disabled = false;
-    elFlipText.innerHTML = 'Same house, same weather, same year. <b>Now run it on a line that never leaves the neighborhood.</b>';
+    elFlip.textContent = 'See the same year with OtterDrift';
+    elFlipText.innerHTML = 'Same house, same weather, same twelve months. <b>Now run it on a line that never leaves the neighborhood.</b>';
     elA11y.textContent = 'On a dish: ' + t.lost + ' evenings lost, ' + t.rough +
       ' rough, ' + t.clean + ' with nothing to report.';
   }
@@ -308,6 +309,7 @@
     elLogEmpty.textContent = 'Nothing to report. That is the entire log.';
     elLogEmpty.style.display = sim.fixed.length ? 'none' : 'block';
 
+    elFlip.textContent = 'Show the dish year again';
     elFlipText.innerHTML = '<b>That is the whole pitch.</b> Same year, same weather, same house full of people — and a log with nothing in it.';
     elA11y.textContent = 'With OtterDrift: no evenings lost across the year.';
   }
@@ -315,7 +317,7 @@
   function animate(data, done){
     if(reduce){ done(); return; }
     state.playing = true;
-    elPlay.disabled = true; elFlip.disabled = true;
+    elPlay.disabled = true;
     elRunNote.textContent = 'Playing the year…';
     var start = null, DUR = 2600;
     if(run) cancelAnimationFrame(run);
@@ -333,21 +335,24 @@
     })(performance.now());
   }
 
+  function regionNote(){
+    return REGIONS.filter(function(r){ return r.k === state.region; })[0].note;
+  }
+
   function resetRun(){
     if(run) cancelAnimationFrame(run);
-    state.playing = false; state.ran = false; state.mode = null;
+    state.playing = false; state.ran = false; state.mode = null; sim = null;
     cells.forEach(function(c){ c.className = 'cell'; delete c.dataset.s; });
     elTL.textContent = elTR.textContent = elTC.textContent = '—';
     elVerdict.textContent = 'Set your year up and press play.';
-    elTitle.textContent = 'Your year on a dish';
-    elSub.textContent = 'Every square is one evening at your place.';
+    markTab('dish');
+    elSub.textContent = 'Every square is one evening at your place. Press play to run the year.';
     elLog.innerHTML = '';
     elLogHead.textContent = 'What went wrong, and when';
     elLogEmpty.textContent = 'The log fills in as the year plays.';
     elLogEmpty.style.display = 'block';
-    elFlip.disabled = true;
-    elFlip.textContent = 'Run the same year with us';
-    elFlipText.textContent = 'Same house, same weather, same year — now run it on a line that never leaves the neighborhood.';
+    elFlip.textContent = 'See the same year with OtterDrift';
+    elFlipText.textContent = 'Play the year, then switch the two above to run the exact same twelve months on a line that never leaves the neighborhood.';
     elPlay.disabled = false;
     elPlay.innerHTML = 'Play my year <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 3l9 5-9 5V3Z" fill="currentColor"/></svg>';
     elRunNote.textContent = '365 evenings, about four seconds.';
@@ -355,31 +360,43 @@
 
   var sim = null;
 
+  function markTab(view){
+    elViews.forEach(function(b){
+      var on = b.dataset.view === view;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  /* one path in and out of both views — the tabs, the play button and the
+     bottom call-to-action all end up here */
+  function showView(view){
+    if(state.playing) return;
+    if(!sim) sim = simulate();
+    state.mode = view; state.ran = true;
+    markTab(view);
+    elSub.textContent = view === 'dish'
+      ? regionNote()
+      : 'The identical year — same weather, same house, same nights everybody was home.';
+    elPlay.innerHTML = 'Play it again <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 3l9 5-9 5V3Z" fill="currentColor"/></svg>';
+    animate(view === 'dish' ? sim.dish : sim.ours, function(){
+      if(view === 'dish') finishDish(sim); else finishOurs(sim);
+    });
+  }
+
+  elViews.forEach(function(b){
+    b.addEventListener('click', function(){ showView(b.dataset.view); });
+  });
+
   elPlay.addEventListener('click', function(){
     if(state.playing) return;
-    sim = simulate();
-    state.mode = 'dish'; state.ran = true;
-    elTitle.textContent = 'Your year on a dish';
-    elSub.textContent = REGIONS.filter(function(r){return r.k===state.region;})[0].note;
-    elPlay.innerHTML = 'Play it again <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 3l9 5-9 5V3Z" fill="currentColor"/></svg>';
-    animate(sim.dish, function(){ finishDish(sim); });
+    sim = simulate();                       /* re-roll for the current setup */
+    showView(state.mode || 'dish');
   });
 
   elFlip.addEventListener('click', function(){
-    if(state.playing || !sim) return;
-    if(state.mode === 'dish'){
-      state.mode = 'ours';
-      elTitle.textContent = 'The same year with OtterDrift';
-      elSub.textContent = 'Same weather, same house, same nights everybody was home.';
-      elFlip.textContent = 'Show the dish year again';
-      animate(sim.ours, function(){ finishOurs(sim); });
-    } else {
-      state.mode = 'dish';
-      elTitle.textContent = 'Your year on a dish';
-      elSub.textContent = REGIONS.filter(function(r){return r.k===state.region;})[0].note;
-      elFlip.textContent = 'Run the same year with us';
-      animate(sim.dish, function(){ finishDish(sim); });
-    }
+    showView(state.mode === 'dish' ? 'ours' : 'dish');
+    document.querySelector('.year-top').scrollIntoView({ block:'center', behavior:'smooth' });
   });
 
   /* reduced motion: still usable, just instant */
