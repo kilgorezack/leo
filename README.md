@@ -1,6 +1,6 @@
-# Otterline — landing site
+# OtterDrift — landing site
 
-A fast, static, dependency-free marketing site for **Otterline Communications**.
+A fast, static, dependency-free marketing site for **OtterDrift Communications**.
 Built around an interactive "evening quiz" that recommends a plan and a live
 satellite-vs-local simulator. No framework, no build step — just HTML, CSS, and
 vanilla JS, ready to deploy on Vercel.
@@ -46,7 +46,7 @@ vercel --prod   # production
 
 The absolute URLs used for canonical links, Open Graph, the sitemap, and
 structured data currently point at the placeholder
-`https://otterline.vercel.app`. Replace that with your real domain in:
+`https://otterdrift.vercel.app`. Replace that with your real domain in:
 
 - `index.html`  (canonical, `og:*`, `twitter:*`, and the JSON-LD block)
 - `sitemap.xml`
