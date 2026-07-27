@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://northline.vercel.app/sitemap.xml
+Sitemap: https://otterline.vercel.app/sitemap.xml
