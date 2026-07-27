@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A year of evenings — OtterDrift</title>
+<meta name="description" content="Anyone looks good on a clear night in July. Play out a whole year of evenings at your place and see how many a dish on the roof would have taken from you.">
+<meta name="author" content="OtterDrift Communications">
+<meta name="theme-color" content="#0B131C">
+<meta name="color-scheme" content="dark light">
+<link rel="canonical" href="https://otterdrift.vercel.app/v2">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OtterDrift Communications">
+<meta property="og:title" content="Anyone looks good in July">
+<meta property="og:description" content="Play out a whole year of evenings at your place and count the ones a dish on the roof would have taken.">
+<meta property="og:url" content="https://otterdrift.vercel.app/v2">
+<meta property="og:image" content="https://otterdrift.vercel.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anyone looks good in July">
+<meta name="twitter:description" content="A whole year of evenings, played out night by night.">
+<meta name="twitter:image" content="https://otterdrift.vercel.app/assets/og-image.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="/assets/v2.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ══════════════ NAV ══════════════ -->
+<header class="nav">
+  <div class="shell nav-in">
+    <a href="/" class="logo" aria-label="OtterDrift — home">
+      <svg class="logo-mark" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M4.8 16C4.8 13.6 6 11.6 7.9 10.4A2.05 2.05 0 1 1 10.6 8.6C11.35 8.35 12.15 8.2 13 8.2C13.85 8.2 14.65 8.35 15.4 8.6A2.05 2.05 0 1 1 18.1 10.4C20 11.6 21.2 13.6 21.2 16C21.2 19.9 17.5 22.3 13 22.3C8.5 22.3 4.8 19.9 4.8 16Z" stroke="#F0A93C" stroke-width="1.7" stroke-linejoin="round"/>
+        <circle cx="10.2" cy="14.6" r="1.05" fill="#F0A93C"/>
+        <circle cx="15.8" cy="14.6" r="1.05" fill="#F0A93C"/>
+        <ellipse cx="13" cy="18.5" rx="3.4" ry="2.3" fill="#F0A93C"/>
+        <path d="M6.7 17.5 9.5 18.1M6.9 20 9.6 19.4M19.3 17.5 16.5 18.1M19.1 20 16.4 19.4" stroke="#F0A93C" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-txt">OtterDrift</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#quiz">Find your plan</a>
+      <a href="/#plans">Plans</a>
+      <a href="#year" class="btn btn-sm">Play your year</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="v2-hero">
+  <div class="shell">
+    <p class="eyebrow on-dark">The long view</p>
+    <h1 class="d1">Anyone looks good in July.</h1>
+    <p class="lede">A clear Tuesday in summer is an easy night to win. Every connection ever sold wins that one. The question is the other three hundred and sixty-four — the sleet in February, the Sunday everybody's home, the night it matters most. So let's play the whole year and count.</p>
+    <p class="v2-hero-note"><span class="dot"></span> Nothing to fill in. Pick a climate, press play, watch your year go by.</p>
+  </div>
+</section>
+
+<!-- ══════════════ THE YEAR ══════════════ -->
+<section class="year-sec" id="year">
+  <div class="shell">
+    <div class="year">
+
+      <!-- setup -->
+      <div class="year-set">
+        <div>
+          <span class="set-lab" id="regLab">Where you live</span>
+          <div class="seg" role="group" aria-labelledby="regLab" id="regions"></div>
+        </div>
+        <div>
+          <span class="set-lab" id="actLab">What your evenings involve</span>
+          <div class="chips" role="group" aria-labelledby="actLab" id="acts"></div>
+        </div>
+        <div class="year-run">
+          <button class="btn" id="play">Play my year
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 3l9 5-9 5V3Z" fill="currentColor"/></svg>
+          </button>
+          <span class="run-note" id="runNote">365 evenings, about four seconds.</span>
+        </div>
+      </div>
+
+      <!-- grid -->
+      <div class="year-body">
+        <div class="year-top">
+          <div>
+            <p class="year-title" id="gridTitle">Your year on a dish</p>
+            <p class="year-sub" id="gridSub">Every square is one evening at your place.</p>
+          </div>
+          <div class="legend" aria-hidden="true">
+            <span><i class="sw-clean"></i> Fine</span>
+            <span><i class="sw-rough"></i> Rough</span>
+            <span><i class="sw-lost"></i> Lost the evening</span>
+          </div>
+        </div>
+
+        <div class="grid-scroll">
+          <div class="grid-inner">
+            <div class="yr-months" id="months" aria-hidden="true"></div>
+            <div class="yr-rows">
+              <div class="yr-days" aria-hidden="true">
+                <span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span>
+              </div>
+              <div class="yr-grid" id="grid" role="img" aria-labelledby="gridA11y"></div>
+            </div>
+          </div>
+        </div>
+        <p class="sr-only" id="gridA11y" aria-live="polite">Press play to run a year of evenings.</p>
+
+        <!-- tallies + log -->
+        <div class="year-out">
+          <div>
+            <div class="tallies">
+              <div class="tally lost"><b id="tLost">—</b><span>Evenings lost</span></div>
+              <div class="tally rough"><b id="tRough">—</b><span>Rough enough to notice</span></div>
+              <div class="tally clean"><b id="tClean">—</b><span>Nobody thought about it</span></div>
+            </div>
+            <p class="verdict-line" id="verdict">Set your year up and press play.</p>
+          </div>
+          <div>
+            <p class="log-head" id="logHead">What went wrong, and when</p>
+            <ul class="log" id="log"></ul>
+            <p class="log-empty" id="logEmpty">The log fills in as the year plays.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- the flip -->
+      <div class="flip">
+        <p id="flipText">Same house, same weather, same year — now run it on a line that never leaves the neighborhood.</p>
+        <button class="btn" id="flip" disabled>Run the same year with us</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ VALUE ══════════════ -->
+<section class="worth">
+  <div class="shell">
+    <div class="worth-head">
+      <p class="eyebrow">What you're actually buying</p>
+      <h2 class="d2">The price is the easy part to compare.</h2>
+      <p class="lede">Two services can cost the same on paper and cost wildly different amounts of your life. Here's what the sticker doesn't say.</p>
+    </div>
+
+    <div class="worth-grid">
+      <div class="worth-card">
+        <span class="num">$0</span>
+        <h3>The gear you don't go buy</h3>
+        <p>A dish gets you one box and a good-luck. Every dead room after that is a mesh unit you research, buy, mount, and re-buy in three years. Coverage isn't an accessory here — it's the product.</p>
+      </div>
+      <div class="worth-card">
+        <span class="num">11 hrs</span>
+        <h3>The year you don't spend troubleshooting</h3>
+        <p>Unplug it, wait, plug it back in, run a speed test, search the forum, try again tomorrow. It's twenty minutes here and an hour there, and it adds up to most of a working day.</p>
+      </div>
+      <div class="worth-card">
+        <span class="num">12 min</span>
+        <h3>The drive when it's really broken</h3>
+        <p>Not a chat window. Not a replacement in the post with a tracking number. A person, in a vehicle, who will be at your door and knows the street they're driving to.</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="split-row head">
+        <div>What an evening actually needs</div>
+        <div>A dish on the roof</div>
+        <div>OtterDrift</div>
+      </div>
+      <div class="split-row">
+        <div class="what">Coverage in the back bedroom</div>
+        <div class="no">Buy your own gear</div>
+        <div class="yes">Included, and we tune it</div>
+      </div>
+      <div class="split-row">
+        <div class="what">A night with weather in it</div>
+        <div class="no">The sky gets a vote</div>
+        <div class="yes">Buried line, no opinion</div>
+      </div>
+      <div class="split-row">
+        <div class="what">8pm, everybody home</div>
+        <div class="no">Shared overhead capacity</div>
+        <div class="yes">Built for the busy hour</div>
+      </div>
+      <div class="split-row">
+        <div class="what">Something breaks on a Sunday</div>
+        <div class="no">A form, and a shipping estimate</div>
+        <div class="yes">Somebody local, often same day</div>
+      </div>
+      <div class="split-row">
+        <div class="what">Knowing before you do</div>
+        <div class="no">Nobody is watching</div>
+        <div class="yes">We watch it and usually beat you to it</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CLOSE ══════════════ -->
+<footer class="v2-close">
+  <div class="shell">
+    <div class="v2-close-in">
+      <h2 class="d2">Now find the one that fits your house.</h2>
+      <p class="lede on-dark">Seven questions about a normal weeknight, and we'll tell you which plan your evenings actually call for.</p>
+      <a href="/#quiz" class="btn">Take the evening quiz
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="foot-bar">
+      <span>© 2026 OtterDrift Communications</span>
+      <nav aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/#plans">Plans</a>
+        <a href="/#compare">One evening, two ways</a>
+        <a href="/#signup">Check your address</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script src="/assets/v2.js" defer></script>
+</body>
+</html>
