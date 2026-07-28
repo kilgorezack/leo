@@ -146,9 +146,10 @@
       g.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
 
-    /* how bad it has got, by what the household can no longer do */
+    /* green only while the tower is yours alone — the moment it starts
+       getting divided the bar goes amber, then red once things break */
     var lostNow = NEEDS.filter(function(a){ return share < a.need; }).length;
-    var tone = lostNow === 0 ? 's-good' : lostNow <= 2 ? 's-warn' : 's-bad';
+    var tone = n === 0 ? 's-good' : lostNow >= 3 ? 's-bad' : 's-warn';
 
     /* the tower bar, split one way per home, your slice tinted by the damage */
     var html = '';
