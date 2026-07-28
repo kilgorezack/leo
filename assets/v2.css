@@ -20,7 +20,7 @@
 /* ============================================================
    THE YEAR — signature widget
    ============================================================ */
-.year-sec{background:var(--night);color:var(--paper);padding:clamp(46px,6vw,80px) 0 clamp(60px,8vw,104px)}
+.year-sec{scroll-margin-top:84px;background:var(--night);color:var(--paper);padding:clamp(46px,6vw,80px) 0 clamp(60px,8vw,104px)}
 
 .year{
   border:1px solid var(--light-line);border-radius:26px;

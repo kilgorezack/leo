@@ -1,22 +1,23 @@
-# OtterDrift — a competitive landing site vs. satellite / LEO
+# OtterDrift — competitive landing pages vs. satellite and fixed wireless
 
 A fast, static, dependency-free marketing site built to argue one thing: for a
 home that a local provider already reaches, **experience beats a headline speed
-number**. It makes that case with three interactive tools rather than a wall of
+number**. It makes that case with four interactive tools rather than a wall of
 copy.
 
 Built as a reference implementation for service providers competing against
-Starlink, Amazon Leo, and the LEO providers coming after them. **OtterDrift is a
+Starlink, Amazon Leo, and 5G home internet from the mobile carriers. **OtterDrift is a
 fictional brand** — the whole thing is designed to be re-skinned and reused.
 
 No framework, no build step, no dependencies. Just HTML, CSS, and vanilla JS.
 
-**Two pages:**
+**Three pages, three arguments — pick the one that matches who you're up against:**
 
-| Page | The angle it takes |
-|---|---|
-| `/` | *"Bring on the full house."* One evening, compared two ways. |
-| `/v2` | *"365 nights. Let's count them."* A whole year, counted. |
+| Page | Competitor | The angle it takes |
+|---|---|---|
+| `/` | Satellite / LEO | *"Bring on the full house."* One evening, compared two ways. |
+| `/v2` | Satellite / LEO | *"365 nights. Let's count them."* A whole year, counted. |
+| `/v3` | Fixed wireless / 5G home | *"The router lives in the window now."* One box, and a puzzle you can't win. |
 
 ---
 
@@ -69,6 +70,31 @@ seeded, so the same setup always replays the same year.
 > outage or weather data for your footprint, feed it in and the claim becomes
 > defensible rather than merely plausible.
 
+### 4. Find the Spot — `/v3`
+
+The fixed-wireless argument, which is a different argument from satellite. Drag
+the gateway around a top-down floor plan hunting for signal. Rooms turn green,
+amber, or red as you move it, a meter shows the link back to the tower, and a
+counter keeps score: *"3 of 7 rooms working."*
+
+The point is that **it's a puzzle you can't win**. The two things you want pull
+against each other — the link to the tower wants a window on the tower side,
+whole-home coverage wants the middle of the house. The best position on a quiet
+afternoon reaches 5 of 7 rooms; in the evening 4; when the tower is busy 3. The
+tool tracks the best score you managed and throws it back at you when you flip
+to the local view and the whole house goes green.
+
+A separate control sets how busy the tower is, which is the other fixed-wireless
+truth: home traffic yields to phone traffic on the same tower, so the product
+gets worse at exactly the hour you want it.
+
+**Good for:** the "but I already get 300 Mbps from my phone company" conversation.
+It moves the argument off the speed test and onto the floor plan.
+
+> **On this model too:** signal falls off with distance and loses more crossing
+> each wall, with tower load subtracted from the link. It's a physical intuition
+> made interactive, not a propagation study — commented as such in `assets/v3.js`.
+
 ---
 
 ## Taking a tool for your own site
@@ -101,6 +127,7 @@ leave the rest behind. Take three things: **the markup block**, **the CSS**, and
 | Evening Quiz | `<div class="quiz-grid">…</div>` in `index.html` | `styles.css` | `main.js` |
 | Evening Simulator | `<div class="sim">…</div>` in `index.html` | `styles.css` | `main.js` |
 | Year Grid | `<div class="year">…</div>` in `v2.html` | `styles.css` + `v2.css` | `v2.js` |
+| Find the Spot | `<div class="spot">…</div>` in `v3.html` | `styles.css` + `v3.css` | `v3.js` |
 
 The scripts find their own elements by ID and no-op when those IDs are absent —
 dropping `main.js` on a page holding only the simulator works fine, and the quiz
@@ -128,6 +155,12 @@ All the copy and behaviour lives in data structures at the top of each file:
 - `ACTS` — the activity chips
 - `LINES` — what a lost evening sounded like, by cause
 - `pickPlan()` thresholds decide which plan each score lands on
+
+**`assets/v3.js`**
+- `ROOMS` — the floor plan itself: rename, resize, or add rooms
+- `WALLS` — wall segments the signal has to cross
+- `LOADS` — the tower-load settings and what each one costs
+- `TOWER` — where the tower sits relative to the house
 
 Rewriting the strings is enough to re-point the whole thing at your market. You
 can add or remove questions and options freely — nothing is hard-coded to seven.
@@ -176,7 +209,7 @@ npm i -g vercel && vercel --prod    # CLI alternative
 ### Before you go live
 
 1. **Set your domain.** Replace `https://otterdrift.vercel.app` in `index.html`
-   (canonical, `og:*`, `twitter:*`, JSON-LD), `v2.html`, `sitemap.xml`, and
+   (canonical, `og:*`, `twitter:*`, JSON-LD), `v2.html`, `v3.html`, `sitemap.xml`, and
    `robots.txt`.
 2. **Wire up the address check.** The footer form confirms on the client only.
    Search `assets/main.js` for **`Integration point`** and drop in a `fetch()` to
@@ -194,12 +227,15 @@ npm i -g vercel && vercel --prod    # CLI alternative
 .
 ├── index.html          # main page: quiz + evening simulator
 ├── v2.html             # second page: the year grid
+├── v3.html             # third page: find the spot (fixed wireless)
 ├── 404.html
 ├── assets/
 │   ├── styles.css      # brand tokens + shared foundation + main-page styles
 │   ├── main.js         # quiz, simulator, nav, address form
 │   ├── v2.css          # year-grid styles
 │   ├── v2.js           # year-grid model + animation
+│   ├── v3.css          # floor-plan styles
+│   ├── v3.js           # signal model + drag interaction
 │   ├── og-image.png    # 1200×630 share card
 │   └── icon-*.png      # PWA + apple-touch icons
 ├── favicon.svg / .ico
