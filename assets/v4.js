@@ -32,12 +32,23 @@
     { label:'Gaming while somebody streams', need:26 }
   ];
 
+  /* the headroom on our side — a busier house than the tower list ever
+     gets to, so our column keeps going after theirs has run out */
+  var OURS_EXTRA = [
+    'Four screens on 4K, all at once',
+    'Two people on camera in two different rooms',
+    'A 90GB game downloading through all of it',
+    'Six cameras and a doorbell recording all day',
+    'The whole laptop backing itself up in the background',
+    'And the far bedroom, the garage and the porch'
+  ];
+
   var $ = function(s){ return document.querySelector(s); };
   var elStreet = $('#streetSvg');
   if(!elStreet) return;
 
   var elSlices=$('#slices'), elThemVal=$('#themVal'), elUsVal=$('#usVal'),
-      elCount=$('#countLine'), elWorks=$('#worksList'), elWorksUs=$('#worksListUs'),
+      elCount=$('#countLine'), elWorks=$('#worksList'), elWorksUs=$('#worksUsWrap'),
       elPunch=$('#punchText'), elAll=$('#signAll'), elReset=$('#reset'),
       elA11y=$('#streetA11y'), elThemNote=$('#themNote');
 
@@ -135,15 +146,19 @@
       g.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
 
-    /* the tower bar, split one way per home */
+    /* how bad it has got, by what the household can no longer do */
+    var lostNow = NEEDS.filter(function(a){ return share < a.need; }).length;
+    var tone = lostNow === 0 ? 's-good' : lostNow <= 2 ? 's-warn' : 's-bad';
+
+    /* the tower bar, split one way per home, your slice tinted by the damage */
     var html = '';
     for(var s=0;s<homes;s++){
-      html += '<div class="slice' + (s === 0 ? ' mine' : '') + '" style="flex:1 1 0"></div>';
+      html += '<div class="slice' + (s === 0 ? ' mine ' + tone : '') + '" style="flex:1 1 0"></div>';
     }
     elSlices.innerHTML = html;
 
     elThemVal.textContent = homes === 1 ? 'The whole tower' : '1/' + homes + ' of the tower';
-    elThemVal.className = 'bar-val them';
+    elThemVal.className = 'bar-val them ' + tone;
     elUsVal.textContent = 'All of it';
 
     elCount.innerHTML = n === 0
@@ -151,20 +166,25 @@
       : '<b>' + n + '</b> of your neighbors have signed up for the same service. Nothing about your house changed.';
 
     /* what still works, at the hour everyone is home */
-    function list(el, ok){
-      el.innerHTML = NEEDS.map(function(a){
-        var works = ok === true || share >= a.need;
-        return '<li class="' + (works ? 'ok' : 'no') + '"><span class="mk">' +
-          (works
-            ? '<svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#0B131C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-            : '<svg viewBox="0 0 12 12" fill="none"><path d="M3.2 3.2 8.8 8.8M8.8 3.2 3.2 8.8" stroke="#0B131C" stroke-width="2.2" stroke-linecap="round"/></svg>') +
-          '</span>' + a.label + '</li>';
-      }).join('');
+    var TICK = '<svg viewBox="0 0 12 12" fill="none"><path d="M2 6.3 4.6 9 10 3.4" stroke="#0B131C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    var CROSS = '<svg viewBox="0 0 12 12" fill="none"><path d="M3.2 3.2 8.8 8.8M8.8 3.2 3.2 8.8" stroke="#0B131C" stroke-width="2.2" stroke-linecap="round"/></svg>';
+    function row(label, works, extra){
+      return '<li class="' + (works ? 'ok' : 'no') + (extra ? ' extra' : '') + '">' +
+        '<span class="mk">' + (works ? TICK : CROSS) + '</span>' + label + '</li>';
     }
-    list(elWorks, false);
-    list(elWorksUs, true);
 
-    var lost = NEEDS.filter(function(a){ return share < a.need; }).length;
+    /* theirs: the same list, going out one item at a time */
+    elWorks.innerHTML = NEEDS.map(function(a){
+      return row(a.label, share >= a.need, false);
+    }).join('');
+
+    /* ours: all of that, and then a good deal more */
+    elWorksUs.innerHTML =
+      '<ul class="wk">' + NEEDS.map(function(a){ return row(a.label, true, false); }).join('') + '</ul>' +
+      '<p class="wk-more">and still room for</p>' +
+      '<ul class="wk">' + OURS_EXTRA.map(function(t){ return row(t, true, true); }).join('') + '</ul>';
+
+    var lost = lostNow;
 
     elThemNote.textContent = n === 0
       ? 'One tower, one house on it. This is the evening they sold you.'
@@ -184,7 +204,7 @@
 
     if(elA11y){
       elA11y.textContent = n + ' neighbors on the tower. Your share: one ' + homes +
-        'th. ' + (NEEDS.length - lost) + ' of ' + NEEDS.length + ' things still work.';
+        'th. ' + (NEEDS.length - lost) + ' of ' + NEEDS.length + ' things still work on the tower; all of them plus ' + OURS_EXTRA.length + ' more work on OtterDrift.';
     }
     elAll.textContent = n < TOTAL - 1 ? 'Sign up the whole street' : 'Clear the street';
   }
