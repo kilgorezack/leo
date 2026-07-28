@@ -136,6 +136,7 @@
   // strip defs and all ids from copies to avoid duplicate-id collisions.
   function cloneHouse(target){
     var el = $(target);
+    if(!el || !heroSVG) return null;
     el.innerHTML = heroSVG.innerHTML;
     var d = el.querySelector('defs');
     if(d) d.parentNode.removeChild(d);
@@ -143,12 +144,14 @@
     return el;
   }
   var quizSVG = cloneHouse('#quizHouse');
+  /* every house is optional — lift the quiz on its own and these are simply absent */
+  function houses(){ return [heroSVG, quizSVG].filter(Boolean); }
 
   /* ────────── LIGHTING ────────── */
   function lightRoom(room){
     if(lit[room]) return false;
     lit[room] = true;
-    [heroSVG, quizSVG].forEach(function(svg){
+    houses().forEach(function(svg){
       var w = svg.querySelector('[data-win="'+room+'"]');
       var g = svg.querySelector('[data-glow="'+room+'"]');
       if(w) w.classList.add('lit');
@@ -158,16 +161,17 @@
   }
   function resetRooms(){
     lit = {};
-    [heroSVG, quizSVG].forEach(function(svg){
+    houses().forEach(function(svg){
       svg.querySelectorAll('.win,.glow').forEach(function(n){ n.classList.remove('lit'); n.style.fill=''; });
     });
     updateCount('');
   }
+  function set(sel, text){ var el = $(sel); if(el) el.textContent = text; }
   function updateCount(status){
     var n = Object.keys(lit).length;
-    $('#litCount').textContent = n;
-    $('#litCount2').textContent = n;
-    if(status !== undefined) $('#quizStatus').textContent = status || 'Answer to light a room';
+    set('#litCount', n);
+    set('#litCount2', n);
+    if(status !== undefined) set('#quizStatus', status || 'Answer to light a room');
   }
 
   /* ────────── BUILD ────────── */
@@ -267,18 +271,20 @@
     $('#quizCard').scrollIntoView({block:'center', behavior:'smooth'});
   }
 
-  $('#retake').addEventListener('click', function(){
+  var retakeEl = $('#retake');
+  if(retakeEl) retakeEl.addEventListener('click', function(){
     idx = 0; score = 0; flags = {}; answers = [];
     resetRooms();
     resultEl.classList.remove('on');
     document.querySelectorAll('.plan').forEach(function(el){ el.classList.remove('picked'); });
     show(0);
-    $('#quizCard').scrollIntoView({block:'center', behavior:'smooth'});
+    var card = $('#quizCard');
+    if(card) card.scrollIntoView({block:'center', behavior:'smooth'});
   });
 
   /* number-key shortcuts */
   document.addEventListener('keydown', function(e){
-    if(resultEl.classList.contains('on')) return;
+    if(!stepsEl || !resultEl || resultEl.classList.contains('on')) return;
     var n = parseInt(e.key,10);
     if(!n || n < 1 || n > 4) return;
     var active = stepsEl.querySelector('.step.active');
@@ -289,13 +295,16 @@
     if(b) b.click();
   });
 
-  build();
-
-  /* hero house: light two rooms on load so it isn't a dead box */
-  setTimeout(function(){
-    ['living','kitchen'].forEach(lightRoom);
-    updateCount();
-  }, 500);
+  /* the quiz only mounts if its markup is on the page, so this file can be
+     dropped on a page that carries just the simulator (or neither) */
+  if(stepsEl && railEl){
+    build();
+    setTimeout(function(){
+      /* light two rooms on load so the house isn't a dead box */
+      ['living','kitchen'].forEach(lightRoom);
+      updateCount();
+    }, 500);
+  }
 
 
   /* ════════════════════════════════════════════════════════

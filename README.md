@@ -1,87 +1,230 @@
-# OtterDrift — landing site
+# OtterDrift — a competitive landing site vs. satellite / LEO
 
-A fast, static, dependency-free marketing site for **OtterDrift Communications**.
-Built around an interactive "evening quiz" that recommends a plan and a live
-satellite-vs-local simulator. No framework, no build step — just HTML, CSS, and
-vanilla JS, ready to deploy on Vercel.
+A fast, static, dependency-free marketing site built to argue one thing: for a
+home that a local provider already reaches, **experience beats a headline speed
+number**. It makes that case with three interactive tools rather than a wall of
+copy.
+
+Built as a reference implementation for service providers competing against
+Starlink, Amazon Leo, and the LEO providers coming after them. **OtterDrift is a
+fictional brand** — the whole thing is designed to be re-skinned and reused.
+
+No framework, no build step, no dependencies. Just HTML, CSS, and vanilla JS.
+
+**Two pages:**
+
+| Page | The angle it takes |
+|---|---|
+| `/` | *"Bring on the full house."* One evening, compared two ways. |
+| `/v2` | *"365 nights. Let's count them."* A whole year, counted. |
+
+---
+
+## The interactive pieces
+
+These are the reusable part. Each one is self-contained, works with keyboard and
+screen readers, and honours `prefers-reduced-motion`.
+
+### 1. The Evening Quiz — `/`
+
+Seven questions about a normal weeknight (how many people, does work follow you
+home, where does the signal give up) that end in a recommended plan, with the
+reasoning shown back to the customer in their own terms — *"you're on camera, and
+being seen clearly is half of being in the meeting"* — plus where satellite
+would specifically let *that* household down.
+
+As you answer, windows light up in an SVG house. Not decoration: it's a running
+visual of coverage the customer just told you they need.
+
+**Good for:** save calls, on-site visits, tablet in a retail lane, or a lead-gen
+page. It captures household needs without asking for an email first.
+
+### 2. The Evening Simulator — `/#compare`
+
+Scrub the hour from 5pm to 11pm, switch the weather between clear/storm/snow,
+and toggle what's happening in the house (work call, gaming, movie, homework,
+cameras). Two panes react live: a dish on the roof degrades with congestion,
+weather, and load, while the local line stays flat. A rolling "why" note explains
+the mechanism — shared overhead capacity, rain fade, the round trip to orbit.
+
+**Good for:** the objection-handling moment. It shows *why* rather than asserting.
+
+### 3. The Year Grid — `/v2`
+
+365 squares, one per evening. Pick a climate and what your nights involve, press
+play, and the year time-lapses square by square — green fine, amber rough, red
+lost — with running tallies and a dated incident log (*"Nov 21 — snow on the
+dish. Movie night became a conversation about the dish."*). Then flip the toggle
+and the identical year re-runs on a local line: the grid heals, the tallies go
+to zero, the log empties.
+
+Snow country lands around 40+ lost evenings; high desert around 20. The model is
+seeded, so the same setup always replays the same year.
+
+**Good for:** the zoom-out argument. One bad night is anecdote; 43 is a pattern.
+
+> **On the model:** the year grid is an *illustration*, not a measurement — it
+> combines monthly weather likelihood, night-of-week congestion, and random
+> obstruction events. It's commented as such in `assets/v2.js`. If you have real
+> outage or weather data for your footprint, feed it in and the claim becomes
+> defensible rather than merely plausible.
+
+---
+
+## Taking a tool for your own site
+
+Everything is plain HTML/CSS/JS, so there's no framework to adopt and nothing to
+compile. Two ways in.
+
+### Option A — iframe it (fastest)
+
+Host this repo anywhere (Vercel, Netlify, S3, your own web server) and embed a
+page in your existing site:
+
+```html
+<iframe src="https://your-deploy.example.com/v2"
+        title="A year of evenings"
+        style="width:100%;height:1400px;border:0" loading="lazy"></iframe>
+```
+
+No code to merge, and updates land wherever it's embedded. The trade-off is that
+you inherit the whole page, styling included.
+
+### Option B — lift the component (proper integration)
+
+Each widget mounts only if its markup is on the page, so you can copy one and
+leave the rest behind. Take three things: **the markup block**, **the CSS**, and
+**the JS file**.
+
+| Tool | Copy this markup | CSS | JS |
+|---|---|---|---|
+| Evening Quiz | `<div class="quiz-grid">…</div>` in `index.html` | `styles.css` | `main.js` |
+| Evening Simulator | `<div class="sim">…</div>` in `index.html` | `styles.css` | `main.js` |
+| Year Grid | `<div class="year">…</div>` in `v2.html` | `styles.css` + `v2.css` | `v2.js` |
+
+The scripts find their own elements by ID and no-op when those IDs are absent —
+dropping `main.js` on a page holding only the simulator works fine, and the quiz
+runs with no house illustration at all. Keep the `id` and `data-` attributes
+intact; they're the wiring. Class names are yours to rename if you also rename
+them in the CSS.
+
+`styles.css` carries the shared foundation (brand tokens, buttons, chips,
+segmented controls, type scale) that all three build on, so copy it first even if
+you only want one widget.
+
+### Change the content without touching the logic
+
+All the copy and behaviour lives in data structures at the top of each file:
+
+**`assets/main.js`**
+- `QUESTIONS` — the seven questions, their options, the score each contributes,
+  which rooms light up, and which flags it sets
+- `PLANS` — plan names and prices
+- `WHY` / `GAPS` — the flag → sentence maps behind the personalised result
+- `ACTS`, `HOURS`, `WX` — simulator activities, hour-by-hour load, weather effects
+
+**`assets/v2.js`**
+- `REGIONS` — climates and their monthly severe-weather likelihood
+- `ACTS` — the activity chips
+- `LINES` — what a lost evening sounded like, by cause
+- `pickPlan()` thresholds decide which plan each score lands on
+
+Rewriting the strings is enough to re-point the whole thing at your market. You
+can add or remove questions and options freely — nothing is hard-coded to seven.
+
+### Re-skin it
+
+The first block of `assets/styles.css` is the brand token set:
+
+```css
+--dusk / --night / --haze / --paper   /* surfaces */
+--lamp / --ember                      /* accent + hover */
+--go                                  /* "this is working" green */
+--display / --body                    /* typefaces */
+```
+
+Swap those and the entire site re-themes, both pages and all three widgets.
+Replace the logo mark (an otter) in the nav of `index.html` and `v2.html`, the
+`favicon.*` files, and `assets/og-image.png`.
+
+### Fair warning before you ship it
+
+- The **pricing, plan features, and stats** (12-minute drive, since 1954) are
+  invented. Replace them with yours.
+- **Competitor claims** — anything the page says about satellite — should go past
+  whoever signs off on your comparative advertising. The original page carried a
+  disclaimer; it has since been removed at the owner's request.
+- The address form is **client-side only** (see below).
+
+---
+
+## Deploy
+
+Static site, nothing to build.
+
+**Vercel (recommended):** import the repo, framework preset **Other**, no build
+command, output directory `./`.
+
+**Anywhere else:** upload the files. Only `vercel.json` is Vercel-specific — it
+sets security headers, caching, and clean URLs. On another host, reproduce the
+clean-URL rule (`/v2` → `v2.html`) or change the links to `/v2.html`.
+
+```bash
+npm i -g vercel && vercel --prod    # CLI alternative
+```
+
+### Before you go live
+
+1. **Set your domain.** Replace `https://otterdrift.vercel.app` in `index.html`
+   (canonical, `og:*`, `twitter:*`, JSON-LD), `v2.html`, `sitemap.xml`, and
+   `robots.txt`.
+2. **Wire up the address check.** The footer form confirms on the client only.
+   Search `assets/main.js` for **`Integration point`** and drop in a `fetch()` to
+   your availability API, CRM, or a form service.
+3. **Bump the asset version** when you edit CSS or JS. Links carry `?v=2`;
+   files under `/assets/` cache for ten minutes and then revalidate, so edits
+   normally propagate on their own — bumping the number forces it immediately,
+   even for a browser holding an older copy.
+
+---
 
 ## Project structure
 
 ```
 .
-├── index.html              # the landing page (SEO, Open Graph, JSON-LD in <head>)
-├── 404.html                # branded not-found page
+├── index.html          # main page: quiz + evening simulator
+├── v2.html             # second page: the year grid
+├── 404.html
 ├── assets/
-│   ├── styles.css          # all styling (brand tokens at the top)
-│   ├── main.js             # quiz, evening simulator, nav + address-form logic
-│   ├── og-image.png        # 1200×630 social share card
-│   ├── apple-touch-icon.png
-│   └── icon-192 / 512 / maskable-512.png   # PWA icons
-├── favicon.svg             # primary icon (modern browsers)
-├── favicon.ico             # legacy fallback
-├── site.webmanifest        # PWA manifest
-├── robots.txt
-├── sitemap.xml
-└── vercel.json             # security headers, caching, clean URLs
+│   ├── styles.css      # brand tokens + shared foundation + main-page styles
+│   ├── main.js         # quiz, simulator, nav, address form
+│   ├── v2.css          # year-grid styles
+│   ├── v2.js           # year-grid model + animation
+│   ├── og-image.png    # 1200×630 share card
+│   └── icon-*.png      # PWA + apple-touch icons
+├── favicon.svg / .ico
+├── site.webmanifest
+├── robots.txt / sitemap.xml
+└── vercel.json         # headers, caching, clean URLs
 ```
-
-## Deploy to Vercel
-
-This is a plain static site, so there's nothing to build.
-
-**Option A — Git (recommended):**
-1. Push this repo to GitHub.
-2. In Vercel, **Add New → Project** and import the repo.
-3. Framework preset: **Other**. Build command: *(none)*. Output directory: `./`.
-4. Deploy.
-
-**Option B — CLI:**
-```bash
-npm i -g vercel
-vercel          # preview
-vercel --prod   # production
-```
-
-## Before you go live — set your domain
-
-The absolute URLs used for canonical links, Open Graph, the sitemap, and
-structured data currently point at the placeholder
-`https://otterdrift.vercel.app`. Replace that with your real domain in:
-
-- `index.html`  (canonical, `og:*`, `twitter:*`, and the JSON-LD block)
-- `sitemap.xml`
-- `robots.txt`
-
-A quick find-and-replace across those three files is all it takes.
-
-## Wire up the address check
-
-The footer "Check your address" form confirms on the client and marks the
-integration point in `assets/main.js` (search for **`Integration point`**).
-Drop in a `fetch()` to your availability API, CRM, or a form service
-(Formspree, Vercel Serverless Function, etc.) and you're collecting leads.
-
-## Editing CSS or JS — bump the version
-
-Asset links carry a version query (`/assets/styles.css?v=2`). Browsers cache
-files under `/assets/` for ten minutes and revalidate after that, so edits
-normally go live on their own. Bump the `?v=` number in `index.html`,
-`404.html`, and `v2.html` when you want a change to reach everyone
-*immediately* — it changes the URL, which forces a fresh download even from a
-cache that would otherwise still be holding the old file.
-
-## Rebranding
-
-Open `assets/styles.css` — the first block is a set of brand tokens
-(`--dusk`, `--lamp`, `--go`, fonts, spacing). Swap those six colors and the
-whole page re-themes. Quiz questions, plans, and simulator copy live as data
-arrays at the top of `assets/main.js`.
 
 ## Notes
 
-- **Accessibility:** skip link, semantic landmarks, keyboard number shortcuts
-  on the quiz, visible focus rings, and `prefers-reduced-motion` support.
-- **Performance:** no JS framework, fonts preconnected, assets cached
-  immutably for a year via `vercel.json` (HTML stays revalidated).
-- **Privacy:** `Permissions-Policy` disables `interest-cohort` (FLoC) and
-  camera/mic/geolocation by default.
+- **Accessibility:** skip link, semantic landmarks, ARIA live regions on results,
+  number-key shortcuts on the quiz, visible focus rings, and reduced-motion
+  fallbacks for every animation.
+- **Performance:** no framework, no dependencies, no build. Fonts preconnected;
+  assets cached with revalidation.
+- **Privacy:** no analytics, no cookies, no third-party scripts. The only
+  external request is Google Fonts — self-host those two families if you'd
+  rather have none.
+
+## Credits
+
+Created and directed by **Zack Kilgore** ([@kilgorezack](https://github.com/kilgorezack)) —
+concept, positioning, copy direction, and product decisions throughout.
+
+Built with [Claude Code](https://claude.com/claude-code) as the implementation
+assistant.
+
+Take it, brand it, ship it.
