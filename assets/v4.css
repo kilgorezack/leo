@@ -1,0 +1,155 @@
+/* ============================================================
+   V4 — "Sign up the street"
+   One control: click a house. Everything else reacts.
+   Layers on top of styles.css.
+   ============================================================ */
+
+.v4-hero{
+  background:
+    radial-gradient(110% 80% at 30% 10%, rgba(240,169,60,.14) 0%, transparent 55%),
+    linear-gradient(178deg,var(--night) 0%,var(--dusk) 100%);
+  color:var(--paper);
+  padding:clamp(56px,9vw,110px) 0 clamp(44px,6vw,72px);
+}
+.v4-hero h1{color:var(--paper);margin:18px 0 22px;max-width:15ch}
+.v4-hero .lede{color:var(--light-60);max-width:54ch}
+
+/* ============================================================
+   THE STREET
+   ============================================================ */
+.street-sec{
+  background:var(--night);color:var(--paper);
+  padding:clamp(46px,6vw,80px) 0 clamp(60px,8vw,104px);
+  scroll-margin-top:84px;
+}
+.street{border:1px solid var(--light-line);border-radius:26px;background:rgba(255,255,255,.02);overflow:hidden}
+
+.street-top{
+  display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end;
+  padding:clamp(22px,3vw,30px) clamp(22px,3vw,32px) 0;
+}
+.street-title{font-family:var(--display);font-weight:700;font-size:clamp(1.15rem,2vw,1.4rem);letter-spacing:-.025em}
+.street-sub{font-size:13.5px;color:var(--light-35);margin-top:5px}
+.street-acts{display:flex;gap:10px;flex-wrap:wrap}
+.mini{
+  border:1.5px solid var(--light-line);border-radius:100px;
+  padding:9px 17px;font-size:13.5px;font-weight:500;color:var(--light-60);
+  transition:border-color .16s,background .16s,color .16s;
+}
+.mini:hover{border-color:var(--lamp);color:var(--paper);background:rgba(240,169,60,.09)}
+
+/* ---- the row of houses ---- */
+.row-scroll{overflow-x:auto;padding:clamp(18px,2.6vw,26px) clamp(22px,3vw,32px) 8px}
+.row-inner{min-width:620px}
+.street-svg{width:100%;height:auto;display:block}
+
+.hz{cursor:pointer}
+.hz-body{fill:#111C27;stroke:rgba(244,246,245,.28);stroke-width:1.5;transition:fill .25s ease,stroke .25s ease}
+.hz:hover .hz-body{stroke:rgba(240,169,60,.7)}
+.hz.on .hz-body{fill:rgba(214,76,60,.22);stroke:rgba(214,76,60,.65)}
+.hz.you .hz-body{fill:rgba(240,169,60,.16);stroke:var(--lamp);stroke-width:2}
+.hz-ant{opacity:0;transition:opacity .25s ease}
+.hz.on .hz-ant{opacity:1}
+.hz-lab{font-family:var(--body);font-size:10.5px;fill:var(--lamp);font-weight:600;text-anchor:middle}
+.hz-plus{font-family:var(--body);font-size:15px;fill:rgba(244,246,245,.30);text-anchor:middle;pointer-events:none;transition:opacity .2s}
+.hz:hover .hz-plus{fill:rgba(240,169,60,.85)}
+.hz.on .hz-plus{opacity:0}
+.hz:focus-visible{outline:none}
+.hz:focus-visible .hz-body{stroke:var(--lamp);stroke-width:2.5}
+
+.count-line{
+  padding:0 clamp(22px,3vw,32px) clamp(18px,2.4vw,24px);
+  font-size:14px;color:var(--light-35);
+}
+.count-line b{color:var(--paper);font-weight:600}
+
+/* ---- the two bars ---- */
+.bars{
+  padding:clamp(22px,3vw,30px) clamp(22px,3vw,32px);
+  border-top:1px solid var(--light-line);
+  background:rgba(255,255,255,.025);
+}
+.bar-block + .bar-block{margin-top:24px}
+.bar-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px}
+.bar-name{font-size:13.5px;font-weight:600;color:var(--light-60)}
+.bar-name .ic{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:8px;vertical-align:1px}
+.bar-name .ic.them{background:#D6544A}
+.bar-name .ic.us{background:var(--lamp)}
+.bar-val{font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:-.02em}
+.bar-val.them{color:#F3A99C}
+.bar-val.us{color:var(--lamp)}
+
+.slices{display:flex;gap:2px;height:34px;border-radius:8px;overflow:hidden;background:rgba(244,246,245,.06)}
+.slice{background:rgba(244,246,245,.10);transition:flex-grow .35s ease,background .35s ease}
+.slice.mine{background:var(--lamp)}
+.bar-solid{height:34px;border-radius:8px;background:var(--lamp)}
+.bar-note{font-size:12.5px;color:var(--light-35);margin-top:9px}
+
+/* ---- what still works ---- */
+.works{
+  display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(22px,3vw,40px);
+  padding:clamp(22px,3vw,30px) clamp(22px,3vw,32px);
+  border-top:1px solid var(--light-line);
+}
+@media(max-width:760px){.works{grid-template-columns:1fr}}
+.works-head{
+  grid-column:1/-1;font-size:11.5px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--light-35);margin-bottom:6px;
+}
+.wk-col{
+  font-size:13px;font-weight:600;color:var(--light-60);
+  margin-bottom:10px;display:flex;align-items:center;
+}
+.wk-col .ic{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:9px;flex:none}
+.wk-col .ic.them{background:#D6544A}
+.wk-col .ic.us{background:var(--lamp)}
+@media(max-width:760px){.works > div + div{margin-top:22px}}
+.wk{list-style:none}
+.wk li{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 0;border-top:1px solid var(--light-line);
+  font-size:15px;color:var(--light-60);transition:color .3s ease;
+}
+.wk li:first-child{border-top:none}
+@media(max-width:760px){.wk:last-child li:first-child{border-top:1px solid var(--light-line)}}
+.wk .mk{
+  width:20px;height:20px;border-radius:50%;flex:none;
+  display:grid;place-items:center;transition:background .3s ease;
+}
+.wk .mk svg{width:11px;height:11px}
+.wk li.ok .mk{background:rgba(79,181,135,.9)}
+.wk li.no .mk{background:rgba(214,76,60,.85)}
+.wk li.no{color:rgba(240,138,124,.85);text-decoration:line-through;text-decoration-color:rgba(240,138,124,.45)}
+
+/* ---- the punchline ---- */
+.punch{
+  display:flex;flex-wrap:wrap;gap:16px;align-items:center;
+  padding:clamp(20px,2.6vw,26px) clamp(22px,3vw,32px);
+  border-top:1px solid var(--light-line);background:rgba(240,169,60,.07);
+}
+.punch p{font-size:15.8px;line-height:1.5;color:var(--light-60);max-width:64ch}
+.punch b{color:var(--paper);font-weight:600}
+
+/* ============================================================
+   VALUE
+   ============================================================ */
+.worth{background:var(--paper);padding:clamp(60px,8vw,104px) 0}
+.worth-head{max-width:52ch;margin-bottom:clamp(34px,5vw,54px)}
+.worth-head h2{margin:16px 0 16px}
+.worth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.worth-grid{grid-template-columns:1fr}}
+.worth-card{border:1px solid var(--line);border-radius:22px;padding:clamp(24px,2.8vw,32px)}
+.worth-card h3{font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:-.02em;margin-bottom:10px}
+.worth-card p{font-size:15px;line-height:1.5;color:var(--ink-60)}
+.worth-card .tag{
+  display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ember);margin-bottom:12px;
+}
+
+/* ============================================================
+   CLOSE
+   ============================================================ */
+.v4-close{background:var(--dusk);color:var(--paper);padding:clamp(56px,8vw,96px) 0 40px}
+.v4-close-in{text-align:center;max-width:40ch;margin:0 auto clamp(40px,5vw,58px)}
+.v4-close h2{color:var(--paper);margin-bottom:16px}
+.v4-close .lede{margin:0 auto 30px}

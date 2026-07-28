@@ -2,7 +2,7 @@
 
 A fast, static, dependency-free marketing site built to argue one thing: for a
 home that a local provider already reaches, **experience beats a headline speed
-number**. It makes that case with four interactive tools rather than a wall of
+number**. It makes that case with five interactive tools rather than a wall of
 copy.
 
 Built as a reference implementation for service providers competing against
@@ -18,6 +18,7 @@ No framework, no build step, no dependencies. Just HTML, CSS, and vanilla JS.
 | `/` | Satellite / LEO | *"Bring on the full house."* One evening, compared two ways. |
 | `/v2` | Satellite / LEO | *"365 nights. Let's count them."* A whole year, counted. |
 | `/v3` | Fixed wireless / 5G home | *"The router lives in the window now."* One box, and a puzzle you can't win. |
+| `/v4` | Fixed wireless / 5G home | *"Every neighbor is a roommate."* One tower, divided by everyone who buys it. |
 
 ---
 
@@ -95,6 +96,32 @@ It moves the argument off the speed test and onto the floor plan.
 > each wall, with tower load subtracted from the link. It's a physical intuition
 > made interactive, not a propagation study — commented as such in `assets/v3.js`.
 
+### 5. Sign Up the Street — `/v4`
+
+The simplest tool on the site, and the one that lands hardest. A row of houses.
+Click any of them and that neighbor buys the same fixed wireless you have. The
+tower bar splits one more way, your share drops from *the whole tower* toward
+*1/16 of the tower*, and items switch off a list of what still works at 8pm —
+4K first, then the work call, until you're down to email and a radio.
+
+The visitor causes the damage themselves, one click at a time, without ever
+touching their own house. That's the argument: **the better it sells on your
+street, the worse it works in your home.** No other product behaves that way,
+and nothing on the bill will ever tell you it happened.
+
+Underneath, a second bar never moves — a line to one house isn't divided when
+somebody else signs up.
+
+One control, no modes, no play button. It reads in about four seconds.
+
+**Good for:** the top of a save call, a lobby screen, or anywhere you have a few
+seconds and no attention. Also the easiest of the five to hand to a
+non-technical seller.
+
+> **On this model:** it's peak-hour contention, drawn simply. Real networks lean
+> on people not all transmitting at once — true at 3pm, much less true at 8pm,
+> which is the hour the tool is about. Commented as such in `assets/v4.js`.
+
 ---
 
 ## Taking a tool for your own site
@@ -128,6 +155,7 @@ leave the rest behind. Take three things: **the markup block**, **the CSS**, and
 | Evening Simulator | `<div class="sim">…</div>` in `index.html` | `styles.css` | `main.js` |
 | Year Grid | `<div class="year">…</div>` in `v2.html` | `styles.css` + `v2.css` | `v2.js` |
 | Find the Spot | `<div class="spot">…</div>` in `v3.html` | `styles.css` + `v3.css` | `v3.js` |
+| Sign Up the Street | `<div class="street">…</div>` in `v4.html` | `styles.css` + `v4.css` | `v4.js` |
 
 The scripts find their own elements by ID and no-op when those IDs are absent —
 dropping `main.js` on a page holding only the simulator works fine, and the quiz
@@ -161,6 +189,10 @@ All the copy and behaviour lives in data structures at the top of each file:
 - `WALLS` — wall segments the signal has to cross
 - `LOADS` — the tower-load settings and what each one costs
 - `TOWER` — where the tower sits relative to the house
+
+**`assets/v4.js`**
+- `NEEDS` — what an evening asks for, and the share of a tower each thing takes
+- `TOTAL` / `YOU` — how many houses on the street, and which one is the visitor's
 
 Rewriting the strings is enough to re-point the whole thing at your market. You
 can add or remove questions and options freely — nothing is hard-coded to seven.
@@ -209,7 +241,7 @@ npm i -g vercel && vercel --prod    # CLI alternative
 ### Before you go live
 
 1. **Set your domain.** Replace `https://otterdrift.vercel.app` in `index.html`
-   (canonical, `og:*`, `twitter:*`, JSON-LD), `v2.html`, `v3.html`, `sitemap.xml`, and
+   (canonical, `og:*`, `twitter:*`, JSON-LD), `v2.html`, `v3.html`, `v4.html`, `sitemap.xml`, and
    `robots.txt`.
 2. **Wire up the address check.** The footer form confirms on the client only.
    Search `assets/main.js` for **`Integration point`** and drop in a `fetch()` to
@@ -228,6 +260,7 @@ npm i -g vercel && vercel --prod    # CLI alternative
 ├── index.html          # main page: quiz + evening simulator
 ├── v2.html             # second page: the year grid
 ├── v3.html             # third page: find the spot (fixed wireless)
+├── v4.html             # fourth page: sign up the street (fixed wireless)
 ├── 404.html
 ├── assets/
 │   ├── styles.css      # brand tokens + shared foundation + main-page styles
@@ -236,6 +269,8 @@ npm i -g vercel && vercel --prod    # CLI alternative
 │   ├── v2.js           # year-grid model + animation
 │   ├── v3.css          # floor-plan styles
 │   ├── v3.js           # signal model + drag interaction
+│   ├── v4.css          # street styles
+│   ├── v4.js           # contention model + click interaction
 │   ├── og-image.png    # 1200×630 share card
 │   └── icon-*.png      # PWA + apple-touch icons
 ├── favicon.svg / .ico

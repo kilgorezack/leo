@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Every neighbor is a roommate. — OtterDrift</title>
+<meta name="description" content="Fixed wireless splits one tower between every house that buys it. Sign up the street one house at a time and watch your own evening get worse.">
+<meta name="author" content="OtterDrift Communications">
+<meta name="theme-color" content="#0B131C">
+<meta name="color-scheme" content="dark light">
+<link rel="canonical" href="https://otterdrift.vercel.app/v4">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OtterDrift Communications">
+<meta property="og:title" content="Every neighbor is a roommate.">
+<meta property="og:description" content="Sign up the street one house at a time and watch your own evening get worse. You won't have changed a thing.">
+<meta property="og:url" content="https://otterdrift.vercel.app/v4">
+<meta property="og:image" content="https://otterdrift.vercel.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Every neighbor is a roommate.">
+<meta name="twitter:description" content="Sign up the street and watch your own evening get worse.">
+<meta name="twitter:image" content="https://otterdrift.vercel.app/assets/og-image.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css?v=2">
+<link rel="stylesheet" href="/assets/v4.css?v=2">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ══════════════ NAV ══════════════ -->
+<header class="nav">
+  <div class="shell nav-in">
+    <a href="/" class="logo" aria-label="OtterDrift — home">
+      <svg class="logo-mark" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M4.8 16C4.8 13.6 6 11.6 7.9 10.4A2.05 2.05 0 1 1 10.6 8.6C11.35 8.35 12.15 8.2 13 8.2C13.85 8.2 14.65 8.35 15.4 8.6A2.05 2.05 0 1 1 18.1 10.4C20 11.6 21.2 13.6 21.2 16C21.2 19.9 17.5 22.3 13 22.3C8.5 22.3 4.8 19.9 4.8 16Z" stroke="#F0A93C" stroke-width="1.7" stroke-linejoin="round"/>
+        <circle cx="10.2" cy="14.6" r="1.05" fill="#F0A93C"/>
+        <circle cx="15.8" cy="14.6" r="1.05" fill="#F0A93C"/>
+        <ellipse cx="13" cy="18.5" rx="3.4" ry="2.3" fill="#F0A93C"/>
+        <path d="M6.7 17.5 9.5 18.1M6.9 20 9.6 19.4M19.3 17.5 16.5 18.1M19.1 20 16.4 19.4" stroke="#F0A93C" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-txt">OtterDrift</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#quiz">Find your plan</a>
+      <a href="/#plans">Plans</a>
+      <a href="#street" class="btn btn-sm">Sign up the street</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="v4-hero">
+  <div class="shell">
+    <p class="eyebrow on-dark">Sharing the air</p>
+    <h1 class="d1">Every neighbor is a roommate.</h1>
+    <p class="lede">One tower covers your whole street, and everyone who buys the same service moves in on it with you. Your equipment doesn't change. Your plan doesn't change. Your evening changes. Here's your street — go ahead and sign it up.</p>
+  </div>
+</section>
+
+<!-- ══════════════ THE STREET ══════════════ -->
+<section class="street-sec" id="street">
+  <div class="shell">
+    <div class="street">
+
+      <div class="street-top">
+        <div>
+          <p class="street-title">Sign up the street.</p>
+          <p class="street-sub">Click any house. They buy the same fixed wireless you have.</p>
+        </div>
+        <div class="street-acts">
+          <button class="mini" id="signAll">Sign up the whole street</button>
+          <button class="mini" id="reset">Start over</button>
+        </div>
+      </div>
+
+      <div class="row-scroll">
+        <div class="row-inner">
+          <svg class="street-svg" id="streetSvg" role="img" aria-labelledby="streetA11y"></svg>
+        </div>
+      </div>
+      <p class="count-line" id="countLine"></p>
+      <p class="sr-only" id="streetA11y" aria-live="polite"></p>
+
+      <div class="bars">
+        <div class="bar-block">
+          <div class="bar-head">
+            <span class="bar-name"><i class="ic them"></i>The tower, split between the houses on it</span>
+            <span class="bar-val them" id="themVal">—</span>
+          </div>
+          <div class="slices" id="slices"></div>
+          <p class="bar-note" id="themNote"></p>
+        </div>
+
+        <div class="bar-block">
+          <div class="bar-head">
+            <span class="bar-name"><i class="ic us"></i>The line we ran to your house</span>
+            <span class="bar-val us" id="usVal">All of it</span>
+          </div>
+          <div class="bar-solid"></div>
+          <p class="bar-note">Yours. It does not get divided when somebody else signs up.</p>
+        </div>
+      </div>
+
+      <div class="works">
+        <p class="works-head">What still works at eight o'clock</p>
+        <div>
+          <p class="wk-col"><i class="ic them"></i>On the tower</p>
+          <ul class="wk" id="worksList"></ul>
+        </div>
+        <div>
+          <p class="wk-col"><i class="ic us"></i>On OtterDrift</p>
+          <ul class="wk" id="worksListUs"></ul>
+        </div>
+      </div>
+
+      <div class="punch">
+        <p id="punchText"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ VALUE ══════════════ -->
+<section class="worth">
+  <div class="shell">
+    <div class="worth-head">
+      <p class="eyebrow">The part that never comes up</p>
+      <h2 class="d2">You're buying a share, not a connection.</h2>
+      <p class="lede">Every service has limits. The difference is whether yours belongs to you, or to whoever else happens to buy the same thing this year.</p>
+    </div>
+
+    <div class="worth-grid">
+      <div class="worth-card">
+        <span class="tag">Success</span>
+        <h3>The better it sells, the worse it works</h3>
+        <p>No other product does this. A good restaurant getting popular doesn't make your dinner worse. Here, every ad that works on your street is a small deduction from your evening — and there's nothing you can do about it from your side.</p>
+      </div>
+      <div class="worth-card">
+        <span class="tag">Invisible</span>
+        <h3>Nothing will ever tell you why</h3>
+        <p>There's no notice, no letter, no line on the bill. One month the call is fine and a few months later it isn't, and the only thing that changed happened in somebody else's living room. Most people blame their own router and go buy a new one.</p>
+      </div>
+      <div class="worth-card">
+        <span class="tag">Ours</span>
+        <h3>What we built for you stays yours</h3>
+        <p>We can add houses to this street all year and your evening doesn't move, because your capacity isn't a slice of anybody's. When we need more, we build more — that's our problem to solve, not a thing you absorb quietly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CLOSE ══════════════ -->
+<footer class="v4-close">
+  <div class="shell">
+    <div class="v4-close-in">
+      <h2 class="d2">Get a connection, not a share of one.</h2>
+      <p class="lede on-dark">Seven questions about a normal weeknight, and we'll tell you which plan your house actually calls for.</p>
+      <a href="/#quiz" class="btn">Take the evening quiz
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="foot-bar">
+      <span>© 2026 OtterDrift Communications</span>
+      <nav aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/v2">A year of evenings</a>
+        <a href="/v3">Find the spot</a>
+        <a href="/#signup">Check your address</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script src="/assets/v4.js?v=2" defer></script>
+</body>
+</html>
