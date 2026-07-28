@@ -221,10 +221,7 @@ npm i -g vercel && vercel --prod    # CLI alternative
 
 ## Credits
 
-Created and directed by **Zack Kilgore** ([@kilgorezack](https://github.com/kilgorezack)) —
-concept, positioning, copy direction, and product decisions throughout.
-
-Built with [Claude Code](https://claude.com/claude-code) as the implementation
-assistant.
+Created by **Zack Kilgore** ([@kilgorezack](https://github.com/kilgorezack)) —
+concept, positioning, copy, and build.
 
 Take it, brand it, ship it.
