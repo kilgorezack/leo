@@ -1,0 +1,4 @@
+# Keep the demo sources out of the deployment. astac.html is generated
+# from these and ships encrypted — the plaintext must not be reachable.
+demo-src/
+tools/

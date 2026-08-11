@@ -258,6 +258,60 @@ Replace the logo mark (an otter) in the nav of `index.html` and `v2.html`, the
 
 ---
 
+## Client demos — `/astac`
+
+A worked example of the re-skin above: `/v2` wearing another provider's brand,
+behind a password. **The originals are untouched** — the demo is a separate page
+that loads `assets/styles.css` and `assets/v2.css` unchanged and layers a
+brand-token override on top.
+
+| | |
+|---|---|
+| **URL** | `/astac` |
+| **Brand** | ASTAC — Arctic Slope Telephone Association Cooperative ([astac.net](https://www.astac.net/)) |
+| **Password** | `NorthSlope2026` |
+
+What changed from `/v2`: the six brand tokens (ASTAC blue `#00539F`, gold
+`#F5B536`, pale-blue wash), Roboto in place of the display face, a white nav
+carrying their logo instead of the dark one, "fine" nights recoloured from green
+to arctic blue, and the copy moved from generic climates to four North Slope
+communities — Utqiaġvik, Nuiqsut, Wainwright, Anaktuvuk Pass — with telehealth,
+ground blizzards, and cargo schedules in place of the original incidents. The
+page carries a "concept demo" tag in the nav and a disclaimer in the footer.
+
+### How the password works
+
+`astac.html` is **generated**. It ships a lock screen and one AES-256-GCM blob;
+the markup, brand CSS and script live inside that blob, under a PBKDF2-SHA256
+key (310k iterations) derived from the password. A wrong password fails the GCM
+authentication tag, so there is no hash sitting in the page to attack offline
+and nothing to read in view-source — this is real encryption, not a hidden div.
+The password is kept in `sessionStorage` so a reload doesn't re-prompt.
+
+Two caveats worth knowing: anyone with the password can pass it on, and the
+`/assets/brand-mark.svg` logo file is served unencrypted (nothing else is). If
+you need audited access control, put the page behind Vercel's Deployment
+Protection instead.
+
+### Editing the demo
+
+Sources are in `demo-src/astac/` — `body.html`, `theme.css`, `app.js`, and the
+lock-screen `shell.html`. Edit those, then rebuild and commit the result:
+
+```bash
+node tools/build-astac.mjs "NorthSlope2026"   # any password you like
+```
+
+`demo-src/` and `tools/` are kept out of the deployment by `.vercelignore`, with
+a redirect in `vercel.json` as a backstop, so the plaintext never ships. Don't
+hand-edit `astac.html` — the next build overwrites it.
+
+To spin up a demo for a different prospect, copy `demo-src/astac/` to
+`demo-src/<them>/`, swap the tokens and copy, and point a second build script at
+it.
+
+---
+
 ## Deploy
 
 Static site, nothing to build.
@@ -297,7 +351,15 @@ npm i -g vercel && vercel --prod    # CLI alternative
 ├── v3.html             # third page: find the spot (fixed wireless)
 ├── v4.html             # fourth page: sign up the street (fixed wireless)
 ├── v5.html             # unlisted: read the thirteenth month (big cable)
+├── astac.html          # GENERATED — password-protected ASTAC demo of /v2
 ├── 404.html
+├── demo-src/astac/     # plaintext sources for astac.html (not deployed)
+│   ├── shell.html      # lock screen + gate script
+│   ├── body.html       # the demo markup
+│   ├── theme.css       # ASTAC brand override layer
+│   └── app.js          # year-grid model, re-copied for the North Slope
+├── tools/
+│   └── build-astac.mjs # encrypts demo-src/astac → astac.html
 ├── assets/
 │   ├── styles.css      # brand tokens + shared foundation + main-page styles
 │   ├── main.js         # quiz, simulator, nav, address form
@@ -309,6 +371,7 @@ npm i -g vercel && vercel --prod    # CLI alternative
 │   ├── v4.js           # contention model + click interaction
 │   ├── v5.css          # receipt-chart styles
 │   ├── v5.js           # 36-month bill model + chart
+│   ├── brand-mark.svg  # ASTAC logo, used by the demo only
 │   ├── og-image.png    # 1200×630 share card
 │   └── icon-*.png      # PWA + apple-touch icons
 ├── favicon.svg / .ico

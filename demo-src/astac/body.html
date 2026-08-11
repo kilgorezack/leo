@@ -1,0 +1,215 @@
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ══════════════ NAV ══════════════ -->
+<header class="nav">
+  <div class="shell nav-in">
+    <a href="https://www.astac.net/" class="logo" aria-label="ASTAC — home">
+      <img class="logo-img" src="/assets/brand-mark.svg" alt="ASTAC">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <span class="demo-tag" aria-label="This is a concept demo, not an official ASTAC page">Concept demo</span>
+      <a href="https://www.astac.net/residential/">Residential</a>
+      <a href="https://www.astac.net/business/solutions/">Business</a>
+      <a href="https://www.astac.net/customer-support/faqs/">Support</a>
+      <a href="#year" class="btn btn-sm">Play your year</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="v2-hero">
+  <div class="shell">
+    <p class="eyebrow on-dark">The long view</p>
+    <h1 class="d1">365 nights on the Slope. Let's count them.</h1>
+    <div class="rule-diamonds" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+    <p class="lede">A clear evening in July is an easy night to win. Every service ever sold up here wins that one. The question is the other three hundred and sixty-four — the ground blizzard in February, the Sunday everybody's home, the night somebody has an appointment they can't miss. So here's the whole year, one square at a time.</p>
+  </div>
+</section>
+
+<!-- ══════════════ THE YEAR ══════════════ -->
+<section class="year-sec" id="year">
+  <div class="shell">
+    <div class="year">
+
+      <!-- setup -->
+      <div class="year-set">
+        <div>
+          <span class="set-lab" id="regLab">Where you live</span>
+          <div class="seg" role="group" aria-labelledby="regLab" id="regions"></div>
+        </div>
+        <div>
+          <span class="set-lab" id="actLab">What your evenings involve</span>
+          <div class="chips" role="group" aria-labelledby="actLab" id="acts"></div>
+        </div>
+        <div class="year-run">
+          <button class="btn" id="play">Play my year
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 3l9 5-9 5V3Z" fill="currentColor"/></svg>
+          </button>
+          <span class="run-note" id="runNote">365 evenings, about four seconds.</span>
+        </div>
+      </div>
+
+      <!-- grid -->
+      <div class="year-body">
+        <div class="year-top">
+          <div class="view-switch" role="group" aria-label="Which service to show">
+            <button class="view-b on" data-view="dish" aria-pressed="true">
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="13.2" r="1.7" fill="currentColor"/>
+                <path d="M5.3 9.9a5.2 5.2 0 0 1 7.4 0M2.7 7a8.9 8.9 0 0 1 12.6 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              A dish on the roof
+            </button>
+            <button class="view-b" data-view="ours" aria-pressed="false">
+              <!-- the diamond run ASTAC uses as a rule -->
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M3.6 6.6 6 9l-2.4 2.4L1.2 9 3.6 6.6Z M9 6.6 11.4 9 9 11.4 6.6 9 9 6.6Z M14.4 6.6 16.8 9l-2.4 2.4L12 9l2.4-2.4Z" fill="currentColor"/>
+              </svg>
+              ASTAC fiber
+            </button>
+          </div>
+          <div class="legend" aria-hidden="true">
+            <span><i class="sw-clean"></i> Fine</span>
+            <span><i class="sw-rough"></i> Rough</span>
+            <span><i class="sw-lost"></i> Lost the evening</span>
+          </div>
+        </div>
+        <p class="year-sub" id="gridSub">Every square is one evening at your place. Press play to run the year.</p>
+
+        <div class="grid-scroll">
+          <div class="grid-inner">
+            <div class="yr-months" id="months" aria-hidden="true"></div>
+            <div class="yr-rows">
+              <div class="yr-days" aria-hidden="true">
+                <span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span>
+              </div>
+              <div class="yr-grid" id="grid" role="img" aria-labelledby="gridA11y"></div>
+            </div>
+          </div>
+        </div>
+        <p class="sr-only" id="gridA11y" aria-live="polite">Press play to run a year of evenings.</p>
+
+        <!-- tallies + log -->
+        <div class="year-out">
+          <div>
+            <div class="tallies">
+              <div class="tally lost"><b id="tLost">—</b><span>Evenings lost</span></div>
+              <div class="tally rough"><b id="tRough">—</b><span>Rough enough to notice</span></div>
+              <div class="tally clean"><b id="tClean">—</b><span>Nobody thought about it</span></div>
+            </div>
+            <p class="verdict-line" id="verdict">Set your year up and press play.</p>
+          </div>
+          <div>
+            <p class="log-head" id="logHead">What went wrong, and when</p>
+            <ul class="log" id="log"></ul>
+            <p class="log-empty" id="logEmpty">The log fills in as the year plays.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- the flip -->
+      <div class="flip">
+        <p id="flipText">Play the year, then switch the two above to run the exact same twelve months on a line that's buried in the ground between here and the village office.</p>
+        <button class="btn" id="flip">See the same year on ASTAC fiber</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ VALUE ══════════════ -->
+<section class="worth">
+  <div class="shell">
+    <div class="worth-head">
+      <p class="eyebrow">What you're actually buying</p>
+      <h2 class="d2">The price is the easy part to compare.</h2>
+      <p class="lede">Two services can cost the same on paper and cost wildly different amounts of your winter. Here's what the sticker doesn't say.</p>
+    </div>
+
+    <div class="worth-grid">
+      <div class="worth-card">
+        <span class="num">$0</span>
+        <h3>The gear you don't fly in</h3>
+        <p>A dish gets you one box and a good-luck. Every dead room after that is a mesh unit you research, order, wait on the plane for, mount, and re-buy in three years. Coverage isn't an accessory here — it's the product.</p>
+      </div>
+      <div class="worth-card">
+        <span class="num">11 hrs</span>
+        <h3>The year you don't spend troubleshooting</h3>
+        <p>Unplug it, wait, plug it back in, run a speed test, get on the roof at twenty below, try again tomorrow. It's twenty minutes here and an hour there, and it adds up to most of a working day.</p>
+      </div>
+      <div class="worth-card">
+        <span class="num">0</span>
+        <h3>Flights before somebody looks at it</h3>
+        <p>Not a chat window. Not a replacement box on the next plane in, weather permitting. A technician who lives in your community, knows the plant, and can be at your door the same day.</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="split-row head">
+        <div>What an evening actually needs</div>
+        <div>A dish on the roof</div>
+        <div>ASTAC fiber</div>
+      </div>
+      <div class="split-row">
+        <div class="what">Coverage in the back bedroom</div>
+        <div class="no">Buy your own gear</div>
+        <div class="yes">Included, and we tune it</div>
+      </div>
+      <div class="split-row">
+        <div class="what">A February with weather in it</div>
+        <div class="no">The sky gets a vote</div>
+        <div class="yes"><span><b>Buried line</b>, no opinion</span></div>
+      </div>
+      <div class="split-row">
+        <div class="what">8pm, everybody home</div>
+        <div class="no">Shared overhead capacity</div>
+        <div class="yes">Built for the busy hour</div>
+      </div>
+      <div class="split-row">
+        <div class="what">Something breaks on a Sunday</div>
+        <div class="no">A form, and a cargo schedule</div>
+        <div class="yes"><span><b>Somebody who lives here</b>, often same day</span></div>
+      </div>
+      <div class="split-row">
+        <div class="what">Knowing before you do</div>
+        <div class="no">Nobody is watching</div>
+        <div class="yes">We watch it and usually beat you to it</div>
+      </div>
+      <div class="split-row">
+        <div class="what">Where the money ends up</div>
+        <div class="no">On a balance sheet somewhere else</div>
+        <div class="yes"><span><b>Capital credits</b>, back to the members</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CLOSE ══════════════ -->
+<footer class="v2-close">
+  <div class="shell">
+    <div class="v2-close-in">
+      <h2 class="d2">Now find the one that fits your house.</h2>
+      <p class="lede on-dark">Serving the North Slope for over forty years — and owned by the people we serve.</p>
+      <a href="https://www.astac.net/residential/unlimited/" class="btn">See ASTAC Unlimited
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="foot-bar">
+      <span>© 2026 Arctic Slope Telephone Association Cooperative</span>
+      <nav aria-label="Footer">
+        <a href="https://www.astac.net/">Home</a>
+        <a href="https://www.astac.net/residential/">Residential</a>
+        <a href="https://www.astac.net/business/solutions/">Business</a>
+        <a href="https://www.astac.net/membership/">Membership</a>
+        <a href="https://www.astac.net/customer-support/faqs/">Support</a>
+      </nav>
+    </div>
+    <p class="foot-note">Concept demo. This page is an unofficial design study prepared for discussion with ASTAC — it is not an ASTAC website, and the year it plays out is an illustration built from a simple weather-and-congestion model, not a measurement of any real service. The ASTAC name and mark belong to Arctic Slope Telephone Association Cooperative.</p>
+  </div>
+</footer>
+
+</main>

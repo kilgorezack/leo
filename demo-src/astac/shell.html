@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     GENERATED FILE — do not edit /astac.html by hand.
+
+     Source lives in demo-src/astac/ (shell.html, body.html,
+     theme.css, app.js). Rebuild with:
+
+       node tools/build-astac.mjs "<password>"
+
+     The page below ships only a lock screen and an encrypted
+     blob. The demo markup, styles and script are inside that
+     blob — AES-GCM, key derived from the password with PBKDF2 —
+     so there is nothing to read in view-source until somebody
+     types the password in.
+     ============================================================ -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password required</title>
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0F1720">
+<meta name="color-scheme" content="dark">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Roboto',ui-sans-serif,system-ui,-apple-system,sans-serif;
+    background:#0F1720;color:#E8ECF0;font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  :focus-visible{outline:2.5px solid #7FA8CC;outline-offset:3px;border-radius:3px}
+
+  .gate{min-height:100dvh;display:grid;place-items:center;padding:24px}
+  .gate-card{
+    width:100%;max-width:400px;
+    background:#151F2B;border:1px solid rgba(255,255,255,.09);
+    border-radius:18px;padding:34px 32px 30px;
+  }
+  .gate-eyebrow{
+    font-size:11px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;
+    color:rgba(232,236,240,.42);margin-bottom:12px;
+  }
+  .gate-card h1{font-size:1.4rem;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:10px}
+  .gate-card p{font-size:14.5px;color:rgba(232,236,240,.6);margin-bottom:22px}
+  .gate-field{display:flex;gap:9px}
+  .gate-field input{
+    flex:1;min-width:0;font:inherit;font-size:15px;color:#E8ECF0;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);
+    border-radius:10px;padding:12px 14px;
+  }
+  .gate-field input:focus{outline:none;border-color:#7FA8CC;background:rgba(255,255,255,.08)}
+  .gate-field button{
+    background:#E8ECF0;color:#0F1720;font-weight:700;font-size:14.5px;
+    border-radius:10px;padding:12px 20px;white-space:nowrap;
+    transition:background .16s ease;
+  }
+  .gate-field button:hover{background:#fff}
+  .gate-field button:disabled{opacity:.55;cursor:default}
+  .gate-msg{font-size:13.5px;margin-top:14px;min-height:1.3em;color:rgba(232,236,240,.45)}
+  .gate-msg.bad{color:#F09287}
+  .gate-foot{
+    font-size:12px;color:rgba(232,236,240,.32);
+    margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);
+  }
+  noscript{display:block;font-size:14px;color:#F09287;margin-top:16px}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <form class="gate-card" id="gateForm" autocomplete="off">
+    <p class="gate-eyebrow">Private preview</p>
+    <h1>This demo is password protected.</h1>
+    <p>Enter the password you were sent to open it.</p>
+    <div class="gate-field">
+      <input type="password" id="pw" name="password" placeholder="Password"
+             aria-label="Password" autocomplete="current-password" autofocus>
+      <button type="submit" id="go">Open</button>
+    </div>
+    <p class="gate-msg" id="msg" role="status" aria-live="polite"></p>
+    <p class="gate-foot">Concept demo prepared for discussion. Not an official page of the company shown inside.</p>
+    <noscript>This preview needs JavaScript to decrypt the page.</noscript>
+  </form>
+</div>
+
+<script id="payload" type="text/plain">{{PAYLOAD}}</script>
+
+<script>
+/* ------------------------------------------------------------
+   The gate. The page body is AES-GCM ciphertext; the key comes
+   out of PBKDF2 over whatever gets typed in. A wrong password
+   fails the GCM auth tag, so there is no hash to compare and
+   nothing to read without the real one.
+   ------------------------------------------------------------ */
+(function(){
+  'use strict';
+
+  var ITER = {{ITER}};
+  var KEY  = 'astac-demo-pw';
+
+  var form = document.getElementById('gateForm'),
+      pw   = document.getElementById('pw'),
+      go   = document.getElementById('go'),
+      msg  = document.getElementById('msg');
+
+  function b64(str){
+    var bin = atob(str.replace(/\s+/g,'')), out = new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+
+  async function decrypt(pass){
+    var raw   = document.getElementById('payload').textContent,
+        bytes = b64(raw),
+        salt  = bytes.slice(0,16),
+        iv    = bytes.slice(16,28),
+        data  = bytes.slice(28);
+
+    var base = await crypto.subtle.importKey(
+      'raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+    var key = await crypto.subtle.deriveKey(
+      { name:'PBKDF2', salt:salt, iterations:ITER, hash:'SHA-256' },
+      base, { name:'AES-GCM', length:256 }, false, ['decrypt']);
+
+    /* throws on a wrong password — the GCM tag won't verify */
+    var plain = await crypto.subtle.decrypt({ name:'AES-GCM', iv:iv }, key, data);
+    return JSON.parse(new TextDecoder().decode(plain));
+  }
+
+  function loadCss(href){
+    return new Promise(function(res){
+      var l = document.createElement('link');
+      l.rel = 'stylesheet'; l.href = href;
+      l.onload = l.onerror = res;
+      document.head.appendChild(l);
+    });
+  }
+
+  async function render(page){
+    /* base layout first, brand skin second, so the overrides win */
+    await Promise.all((page.css_links || []).map(loadCss));
+
+    var style = document.createElement('style');
+    style.textContent = page.css;
+    document.head.appendChild(style);
+
+    document.title = page.title;
+    var desc = document.querySelector('meta[name="theme-color"]');
+    if(desc) desc.setAttribute('content', page.theme_color || '#001D38');
+
+    document.body.innerHTML = page.html;
+
+    var s = document.createElement('script');
+    s.textContent = page.js;
+    document.body.appendChild(s);
+
+    if(location.hash){
+      var t = document.querySelector(location.hash);
+      if(t) t.scrollIntoView();
+    }
+  }
+
+  async function attempt(pass, quiet){
+    go.disabled = true;
+    msg.className = 'gate-msg';
+    msg.textContent = 'Unlocking…';
+    try{
+      var page = await decrypt(pass);
+      try{ sessionStorage.setItem(KEY, pass); }catch(e){}
+      await render(page);
+    }catch(err){
+      try{ sessionStorage.removeItem(KEY); }catch(e){}
+      go.disabled = false;
+      if(quiet){ msg.textContent = ''; return; }
+      msg.className = 'gate-msg bad';
+      msg.textContent = window.isSecureContext
+        ? 'That password doesn’t match. Try again.'
+        : 'This page has to be served over HTTPS to unlock.';
+      pw.select();
+    }
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(pw.value) attempt(pw.value, false);
+  });
+
+  /* same tab, same session — don't ask twice */
+  var saved = null;
+  try{ saved = sessionStorage.getItem(KEY); }catch(e){}
+  if(saved) attempt(saved, true);
+})();
+</script>
+
+</body>
+</html>

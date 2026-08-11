@@ -1,0 +1,162 @@
+/* ============================================================
+   ASTAC — brand skin for the "year of evenings" page.
+
+   This file is a pure override layer. It loads *after*
+   /assets/styles.css and /assets/v2.css and does nothing but
+   re-point the brand tokens and repaint the handful of places
+   that hard-code a colour. Neither original file is touched.
+
+   Palette lifted from astac.net:
+     #00539F  logo blue          #2563AF  link blue
+     #F5B536  gold               #ECF5FD  pale blue wash
+   ============================================================ */
+
+:root{
+  /* ---- the six brand tokens ---- */
+  --dusk:#00427E;        /* deep ASTAC blue — primary dark */
+  --night:#001D38;       /* near-black navy — the dark sections */
+  --haze:#ECF5FD;        /* pale blue wash — light section bg */
+  --paper:#FFFFFF;       /* lightest surface */
+  --lamp:#F5B536;        /* ASTAC gold — the accent */
+  --go:#2FA36B;          /* green — 'this is working' */
+  --ember:#D4901A;       /* deeper gold — hover / pressed */
+
+  /* ---- brand extras used below ---- */
+  --brand:#00539F;       /* the logo blue itself */
+  --brand-lt:#2E9BE0;    /* bright arctic blue — 'fine' nights */
+  --brand-link:#2563AF;
+
+  --ink:#0F2E4D;
+  --ink-60:rgba(15,46,77,.66);
+  --ink-35:rgba(15,46,77,.40);
+  --line:rgba(0,83,159,.16);
+  --light-60:rgba(255,255,255,.70);
+  --light-35:rgba(255,255,255,.44);
+  --light-line:rgba(255,255,255,.18);
+
+  /* ASTAC's site runs on Roboto — so does this */
+  --display:'Roboto',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --body:'Roboto',ui-sans-serif,system-ui,-apple-system,sans-serif;
+}
+
+/* Roboto is a much narrower face than the original display font —
+   ease off the negative tracking so the headlines don't collide */
+.d1{font-weight:900;letter-spacing:-.022em;line-height:1.0}
+.d2{font-weight:700;letter-spacing:-.018em;line-height:1.08}
+.d3{font-weight:700;letter-spacing:-.012em}
+.tally b,.worth-card .num,.worth-card h3,.logo-txt,.year-title{letter-spacing:-.015em}
+
+/* ============================================================
+   NAV — ASTAC runs a white header, not a dark one
+   ============================================================ */
+.nav{
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 1px 0 rgba(0,83,159,.04);
+}
+.nav-in{height:78px}
+.logo{color:var(--brand)}
+.logo-img{height:44px;width:auto;flex:none}
+.nav-links a{color:var(--brand);font-weight:500}
+.nav-links a:hover{color:var(--ember)}
+.nav-links .btn{color:var(--night)}
+.nav-links .btn:hover{color:#fff}
+
+.demo-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--brand);background:var(--haze);
+  border:1px solid var(--line);border-radius:100px;padding:6px 12px;
+}
+@media(max-width:980px){.demo-tag{display:none}}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.v2-hero{
+  background:
+    radial-gradient(115% 85% at 20% 6%, rgba(46,155,224,.30) 0%, transparent 58%),
+    radial-gradient(80% 60% at 92% 8%, rgba(245,181,54,.16) 0%, transparent 60%),
+    linear-gradient(176deg,var(--night) 0%,var(--dusk) 100%);
+}
+
+/* the little diamond rule ASTAC uses under its headlines */
+.rule-diamonds{
+  display:flex;gap:5px;margin:0 0 24px;
+}
+.rule-diamonds i{
+  width:11px;height:11px;background:var(--lamp);
+  transform:rotate(45deg);display:block;border-radius:1px;
+}
+@media(max-width:520px){.rule-diamonds i:nth-child(n+9){display:none}}
+
+/* ============================================================
+   THE YEAR
+   ============================================================ */
+.year-sec{
+  background:
+    radial-gradient(100% 55% at 50% 0%, rgba(0,83,159,.35) 0%, transparent 62%),
+    var(--night);
+}
+.year{background:rgba(255,255,255,.03);border-color:var(--light-line)}
+.year-set{background:rgba(0,83,159,.16)}
+
+.chip:hover{border-color:rgba(245,181,54,.6)}
+.chip.on{background:rgba(245,181,54,.14)}
+
+/* the satellite tab stays warning-red; ours goes ASTAC gold */
+.view-b.on[data-view="dish"]{
+  background:rgba(214,84,74,.24);color:#F6B0A4;
+  box-shadow:inset 0 0 0 1.5px rgba(214,84,74,.55);
+}
+.view-b.on[data-view="ours"]{background:var(--lamp);color:var(--night)}
+.view-b .logo-img{height:17px}
+
+/* ---- grid: blue nights are good nights ---- */
+.sw-clean,.cell.s0{background:var(--brand-lt)}
+.sw-rough,.cell.s1{background:var(--lamp)}
+.sw-lost,.cell.s2{background:#D6544A}
+.cell{background:rgba(255,255,255,.07)}
+
+.tally.lost b{color:#F49386}
+.tally.rough b{color:#F7C46B}
+.tally.clean b{color:#7CC6F0}
+
+.log li.lost .what{color:#F3A99C}
+.log li.ok .what{color:#9CD1F2}
+
+.flip{background:rgba(245,181,54,.09)}
+
+/* ============================================================
+   VALUE BEATS
+   ============================================================ */
+.worth{background:var(--haze)}
+.worth-card{
+  background:var(--paper);border-color:var(--line);
+  box-shadow:0 1px 2px rgba(0,83,159,.05);
+}
+.worth-card .num{color:var(--brand)}
+.worth-card h3{color:var(--ink)}
+
+.split{background:var(--paper);border-color:var(--line)}
+.split-row{border-color:var(--line)}
+.split-row.head{background:rgba(0,83,159,.06);color:var(--brand)}
+.split-row.head > div:last-child{color:var(--brand);font-weight:700}
+.split .yes{color:var(--ink-60)}
+.split .yes b{color:var(--brand);font-weight:600}
+
+/* ============================================================
+   CLOSE
+   ============================================================ */
+.v2-close{
+  background:
+    radial-gradient(90% 70% at 50% 0%, rgba(0,83,159,.55) 0%, transparent 65%),
+    var(--night);
+}
+.v2-close .btn{color:var(--night)}
+.foot-bar a:hover{color:var(--lamp)}
+.foot-note{
+  font-size:12px;line-height:1.5;color:var(--light-35);
+  max-width:74ch;margin-top:18px;
+}
+.foot-logo{height:34px;width:auto;opacity:.9;margin-bottom:16px;filter:brightness(0) invert(1)}
