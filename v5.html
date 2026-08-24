@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Read the thirteenth month. — OtterDrift</title>
+<meta name="description" content="The free-for-a-year internet offer is a pricing structure, not a price. See all 36 months of it against a flat local fiber bill.">
+<meta name="author" content="OtterDrift Communications">
+<meta name="theme-color" content="#0B131C">
+<meta name="color-scheme" content="dark light">
+
+<!-- Unlisted campaign page: not linked from site navigation and not in the
+     sitemap. Add <meta name="robots" content="noindex"> if it should stay
+     out of search results entirely. -->
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OtterDrift Communications">
+<meta property="og:title" content="Read the thirteenth month.">
+<meta property="og:description" content="Free for a year is a pricing structure, not a price. Here are all 36 months of it.">
+<meta property="og:image" content="https://otterdrift.vercel.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Read the thirteenth month.">
+<meta name="twitter:description" content="Free for a year is a pricing structure, not a price.">
+<meta name="twitter:image" content="https://otterdrift.vercel.app/assets/og-image.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css?v=2">
+<link rel="stylesheet" href="/assets/v5.css?v=2">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ══════════════ NAV (brand + one action — this page is a campaign
+     destination, so it deliberately has no site navigation) ══════════════ -->
+<header class="nav">
+  <div class="shell nav-in">
+    <a href="/" class="logo" aria-label="OtterDrift — home">
+      <svg class="logo-mark" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M4.8 16C4.8 13.6 6 11.6 7.9 10.4A2.05 2.05 0 1 1 10.6 8.6C11.35 8.35 12.15 8.2 13 8.2C13.85 8.2 14.65 8.35 15.4 8.6A2.05 2.05 0 1 1 18.1 10.4C20 11.6 21.2 13.6 21.2 16C21.2 19.9 17.5 22.3 13 22.3C8.5 22.3 4.8 19.9 4.8 16Z" stroke="#F0A93C" stroke-width="1.7" stroke-linejoin="round"/>
+        <circle cx="10.2" cy="14.6" r="1.05" fill="#F0A93C"/>
+        <circle cx="15.8" cy="14.6" r="1.05" fill="#F0A93C"/>
+        <ellipse cx="13" cy="18.5" rx="3.4" ry="2.3" fill="#F0A93C"/>
+        <path d="M6.7 17.5 9.5 18.1M6.9 20 9.6 19.4M19.3 17.5 16.5 18.1M19.1 20 16.4 19.4" stroke="#F0A93C" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-txt">OtterDrift</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#bill" class="btn btn-sm">See the 36 months</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="v5-hero">
+  <div class="shell">
+    <p class="eyebrow on-dark">The offer down the street</p>
+    <h1 class="d1">Read the thirteenth month.</h1>
+    <p class="lede">Free for a year is not a price. It's a shape — twelve quiet months, a step you were told about once in a footnote, and another one after that. We're not going to beat it on the first year, and we're not going to try. Here is what the whole three years actually looks like, next to a number that never moves.</p>
+  </div>
+</section>
+
+<!-- ══════════════ THE RECEIPT ══════════════ -->
+<section class="bill-sec" id="bill">
+  <div class="shell">
+    <div class="bill">
+
+      <div class="bill-top">
+        <p class="bill-title">Thirty-six months, drawn out.</p>
+        <p class="bill-sub">Every bar is one monthly bill on the free-for-a-year offer. The green line is ours.</p>
+        <span class="opt-lab" id="optLab">What comes with the offer</span>
+        <div class="chips" role="group" aria-labelledby="optLab" id="billOpts"></div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-scroll">
+          <div class="chart-inner">
+            <svg class="chart" id="chart" role="img" aria-labelledby="billA11y"></svg>
+          </div>
+        </div>
+      </div>
+      <p class="readout-line" id="readout"></p>
+      <p class="sr-only" id="billA11y" aria-live="polite"></p>
+
+      <div class="totals">
+        <div class="tot free"><b id="totFree">—</b><span>What the "free" year actually cost</span></div>
+        <div class="tot them"><b id="totThem">—</b><span>Three years on the offer</span></div>
+        <div class="tot us"><b id="totUs">—</b><span>Three years with us</span></div>
+      </div>
+
+      <p class="bill-verdict" id="verdict"></p>
+
+      <div class="bill-foot">
+        <p id="billFoot"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ VALUE ══════════════ -->
+<section class="worth">
+  <div class="shell">
+    <div class="worth-head">
+      <p class="eyebrow">Beyond the bill</p>
+      <h2 class="d2">A promo is a plan to raise your price later.</h2>
+      <p class="lede">Introductory pricing isn't generosity, it's a schedule. The question worth asking isn't what you'll pay in month one — it's what the company is like to live with once the offer is over.</p>
+    </div>
+
+    <div class="worth-grid">
+      <div class="worth-card">
+        <span class="tag">The bill</span>
+        <h3>One number, thirty-six times</h3>
+        <p>No promo to expire, no step-up on the anniversary, no equipment rental for hardware that stays theirs. If you want to know what you'll pay in two years, look at what you're paying now. That's it. That's the whole pricing page.</p>
+      </div>
+      <div class="worth-card">
+        <span class="tag">The direction</span>
+        <h3>You send as fast as you receive</h3>
+        <p>Cable was built to deliver television — it comes down beautifully and goes up narrowly. That's fine until you're the one on camera, uploading the assignment, or backing up a phone full of photos. Fiber sends and receives at the same speed.</p>
+      </div>
+      <div class="worth-card">
+        <span class="tag">The exit</span>
+        <h3>Nobody here is trained to keep you</h3>
+        <p>There's no retention department, because there's no gauntlet to run. If you ever want to leave, you say so and you leave. We'd rather earn the month than trap the year — and we live here, so we'll see you at the store either way.</p>
+      </div>
+    </div>
+
+    <!-- the symmetry strip -->
+    <div class="sym">
+      <div class="sym-row">
+        <div class="sym-cell">
+          <p class="sym-name">A typical cable plan</p>
+          <div class="sym-pair">
+            <div class="sym-bar"><span class="lab">Down</span><span class="sym-track"><span class="sym-fill down" style="width:100%"></span></span></div>
+            <div class="sym-bar"><span class="lab">Up</span><span class="sym-track"><span class="sym-fill up-cable" style="width:7%"></span></span></div>
+          </div>
+          <p class="sym-note">Sending is the narrow direction. <b>On a call, you're the one who freezes.</b></p>
+        </div>
+        <div class="sym-cell">
+          <p class="sym-name">Fiber to your house</p>
+          <div class="sym-pair">
+            <div class="sym-bar"><span class="lab">Down</span><span class="sym-track"><span class="sym-fill down" style="width:100%"></span></span></div>
+            <div class="sym-bar"><span class="lab">Up</span><span class="sym-track"><span class="sym-fill up-fiber" style="width:100%"></span></span></div>
+          </div>
+          <p class="sym-note">The same both ways. <b>Nobody in the meeting has to ask if you're still there.</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CLOSE ══════════════ -->
+<footer class="v5-close">
+  <div class="shell">
+    <div class="v5-close-in">
+      <h2 class="d2">Ask us what it costs in year three.</h2>
+      <p class="lede on-dark">We'll give you the same number we gave you for year one. Check your address and see what's available at your place.</p>
+      <a href="/#signup" class="btn">Check your address
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="foot-bar">
+      <span>© 2026 OtterDrift Communications</span>
+      <nav aria-label="Footer">
+        <a href="/">Home</a>
+        <a href="/#plans">Plans</a>
+        <a href="/#quiz">Find your plan</a>
+      </nav>
+    </div>
+    <p class="v5-fine">Figures shown are illustrative placeholders for a standard residential offer and are not a quote from any provider. Promotional terms, rack rates, equipment charges and surcharges vary by market and change over time — check current published terms for your address. Comparisons describe general characteristics of promotional cable pricing and of cable versus fiber upload capacity; individual experience varies by provider, plan and location.</p>
+  </div>
+</footer>
+
+</main>
+
+<script src="/assets/v5.js?v=2" defer></script>
+</body>
+</html>

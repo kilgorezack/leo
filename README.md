@@ -1,17 +1,17 @@
-# OtterDrift — competitive landing pages vs. satellite and fixed wireless
+# OtterDrift — competitive landing pages vs. satellite, fixed wireless and cable
 
 A fast, static, dependency-free marketing site built to argue one thing: for a
 home that a local provider already reaches, **experience beats a headline speed
-number**. It makes that case with five interactive tools rather than a wall of
+number**. It makes that case with six interactive tools rather than a wall of
 copy.
 
 Built as a reference implementation for service providers competing against
-Starlink, Amazon Leo, and 5G home internet from the mobile carriers. **OtterDrift is a
+Starlink, Amazon Leo, 5G home internet from the mobile carriers, and big cable. **OtterDrift is a
 fictional brand** — the whole thing is designed to be re-skinned and reused.
 
 No framework, no build step, no dependencies. Just HTML, CSS, and vanilla JS.
 
-**Three pages, three arguments — pick the one that matches who you're up against:**
+**Five pages, five arguments — pick the one that matches who you're up against:**
 
 | Page | Competitor | The angle it takes |
 |---|---|---|
@@ -19,6 +19,7 @@ No framework, no build step, no dependencies. Just HTML, CSS, and vanilla JS.
 | `/v2` | Satellite / LEO | *"365 nights. Let's count them."* A whole year, counted. |
 | `/v3` | Fixed wireless / 5G home | *"The router lives in the window now."* One box, and a puzzle you can't win. |
 | `/v4` | Fixed wireless / 5G home | *"Every neighbor is a roommate."* One tower, divided by everyone who buys it. |
+| `/v5` | Big cable / "free" promos | *"Read the thirteenth month."* Unlisted. The 36-month receipt behind a free year. |
 
 ---
 
@@ -122,6 +123,34 @@ non-technical seller.
 > on people not all transmitting at once — true at 3pm, much less true at 8pm,
 > which is the hour the tool is about. Commented as such in `assets/v4.js`.
 
+### 6. The 36-Month Receipt — `/v5` (unlisted)
+
+The cable argument, which is a pricing argument rather than a coverage one.
+Thirty-six bars, one per monthly bill on a free-for-a-year offer: twelve short
+amber ones, a cliff at month 13 when the promo lapses, another step at month 25,
+against a flat green line that never moves.
+
+The insight the chart makes visible is that **the free year was never zero** —
+fees and equipment rental land during it, so the bars start above the axis. Three
+running totals: what the free year actually cost, three years on the offer, three
+years flat. Toggle the conditions that come with the deal (surcharges, rented
+router, annual adjustment, the mobile line that makes it "free") and hover any
+month to see exactly what that bill was made of.
+
+This page is **deliberately unlisted** — no site navigation, not linked from the
+other pages, not in the sitemap. It's built as a destination for a targeted
+campaign against a specific local offer.
+
+**Good for:** win-back at promo expiration, door-hanger QR in a market where a
+cable promo is running, or the "but theirs is free right now" objection.
+
+> **⚠️ Every figure in `assets/v5.js` is a placeholder.** Promo terms, rack rates,
+> equipment charges and surcharges vary by market and change constantly. Replace
+> them with numbers taken from the competitor's own published terms in your
+> footprint, keep a dated copy of the source, and have legal review anything that
+> names a competitor. The page ships with generic labels ("the offer", "a typical
+> cable plan") rather than a brand name for exactly this reason.
+
 ---
 
 ## Taking a tool for your own site
@@ -156,6 +185,7 @@ leave the rest behind. Take three things: **the markup block**, **the CSS**, and
 | Year Grid | `<div class="year">…</div>` in `v2.html` | `styles.css` + `v2.css` | `v2.js` |
 | Find the Spot | `<div class="spot">…</div>` in `v3.html` | `styles.css` + `v3.css` | `v3.js` |
 | Sign Up the Street | `<div class="street">…</div>` in `v4.html` | `styles.css` + `v4.css` | `v4.js` |
+| The 36-Month Receipt | `<div class="bill">…</div>` in `v5.html` | `styles.css` + `v5.css` | `v5.js` |
 
 The scripts find their own elements by ID and no-op when those IDs are absent —
 dropping `main.js` on a page holding only the simulator works fine, and the quiz
@@ -193,6 +223,11 @@ All the copy and behaviour lives in data structures at the top of each file:
 **`assets/v4.js`**
 - `NEEDS` — what an evening asks for, and the share of a tower each thing takes
 - `TOTAL` / `YOU` — how many houses on the street, and which one is the visitor's
+
+**`assets/v5.js`**
+- `CABLE` — promo rate and the step-ups when it lapses. **Placeholders — replace with verified local figures**
+- `OURS` — your flat monthly price
+- `ADDONS` — the conditions that come with the offer (fees, equipment, annual rise, bundled line)
 
 Rewriting the strings is enough to re-point the whole thing at your market. You
 can add or remove questions and options freely — nothing is hard-coded to seven.
@@ -261,6 +296,7 @@ npm i -g vercel && vercel --prod    # CLI alternative
 ├── v2.html             # second page: the year grid
 ├── v3.html             # third page: find the spot (fixed wireless)
 ├── v4.html             # fourth page: sign up the street (fixed wireless)
+├── v5.html             # unlisted: read the thirteenth month (big cable)
 ├── 404.html
 ├── assets/
 │   ├── styles.css      # brand tokens + shared foundation + main-page styles
@@ -271,6 +307,8 @@ npm i -g vercel && vercel --prod    # CLI alternative
 │   ├── v3.js           # signal model + drag interaction
 │   ├── v4.css          # street styles
 │   ├── v4.js           # contention model + click interaction
+│   ├── v5.css          # receipt-chart styles
+│   ├── v5.js           # 36-month bill model + chart
 │   ├── og-image.png    # 1200×630 share card
 │   └── icon-*.png      # PWA + apple-touch icons
 ├── favicon.svg / .ico

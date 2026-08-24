@@ -1,0 +1,143 @@
+/* ============================================================
+   V5 — "Read the thirteenth month" (big cable / free promos)
+   Unlisted campaign page. Layers on top of styles.css.
+   ============================================================ */
+
+.v5-hero{
+  background:
+    radial-gradient(110% 80% at 70% 10%, rgba(240,169,60,.13) 0%, transparent 55%),
+    linear-gradient(178deg,var(--night) 0%,var(--dusk) 100%);
+  color:var(--paper);
+  padding:clamp(56px,9vw,110px) 0 clamp(44px,6vw,72px);
+}
+.v5-hero h1{color:var(--paper);margin:18px 0 22px;max-width:15ch}
+.v5-hero .lede{color:var(--light-60);max-width:54ch}
+
+/* ============================================================
+   THE RECEIPT
+   ============================================================ */
+.bill-sec{
+  background:var(--night);color:var(--paper);
+  padding:clamp(46px,6vw,80px) 0 clamp(60px,8vw,104px);
+  scroll-margin-top:84px;
+}
+.bill{border:1px solid var(--light-line);border-radius:26px;background:rgba(255,255,255,.02);overflow:hidden}
+
+.bill-top{
+  padding:clamp(22px,3vw,30px) clamp(22px,3vw,32px);
+  border-bottom:1px solid var(--light-line);background:rgba(255,255,255,.025);
+}
+.bill-title{font-family:var(--display);font-weight:700;font-size:clamp(1.15rem,2vw,1.4rem);letter-spacing:-.025em}
+.bill-sub{font-size:13.5px;color:var(--light-35);margin-top:5px}
+.opt-lab{
+  display:block;font-size:11.5px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--light-35);margin:20px 0 12px;
+}
+
+/* ---- chart ---- */
+.chart-wrap{padding:clamp(20px,2.8vw,28px) clamp(22px,3vw,32px) 6px}
+.chart-scroll{overflow-x:auto}
+.chart-inner{min-width:660px}
+.chart{width:100%;height:auto;display:block}
+
+.bar{transition:height .3s ease,y .3s ease,fill .3s ease}
+.bar.promo{fill:#E9A63C}
+.bar.after{fill:#D6544A}
+.bar:hover{opacity:.82}
+.ours-line{stroke:#4FB587;stroke-width:2.5;stroke-linecap:round}
+.ours-tag{font-family:var(--body);font-size:11.5px;font-weight:600;fill:#7FD3A6}
+.quote-line{stroke:rgba(244,246,245,.35);stroke-width:1.4;stroke-dasharray:5 5}
+.cliff{stroke:rgba(244,246,245,.45);stroke-width:1.4;stroke-dasharray:3 4}
+.cliff-tag{font-family:var(--body);font-size:11px;font-weight:600;fill:rgba(244,246,245,.62)}
+.axis{font-family:var(--body);font-size:10.5px;fill:rgba(244,246,245,.38)}
+.axis-line{stroke:rgba(244,246,245,.12);stroke-width:1}
+.yr-tick{font-family:var(--body);font-size:11px;fill:rgba(244,246,245,.42)}
+
+.readout-line{
+  padding:10px clamp(22px,3vw,32px) clamp(18px,2.4vw,22px);
+  font-size:14px;color:var(--light-60);min-height:2.6em;
+}
+.readout-line b{color:var(--paper);font-weight:600}
+
+/* ---- totals ---- */
+.totals{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  padding:clamp(20px,2.8vw,26px) clamp(22px,3vw,32px);
+  border-top:1px solid var(--light-line);
+}
+@media(max-width:760px){.totals{grid-template-columns:1fr}}
+.tot{border:1px solid var(--light-line);border-radius:16px;padding:16px 18px;background:rgba(255,255,255,.02)}
+.tot b{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(1.5rem,3vw,2.05rem);letter-spacing:-.03em;
+  line-height:1;display:block;margin-bottom:6px;
+}
+.tot.free b{color:#F3B665}
+.tot.them b{color:#F08A7C}
+.tot.us b{color:#7FD3A6}
+.tot span{font-size:12.5px;color:var(--light-35);line-height:1.35;display:block}
+
+.bill-verdict{
+  padding:0 clamp(22px,3vw,32px) clamp(22px,3vw,28px);
+  font-size:clamp(1rem,1.7vw,1.2rem);line-height:1.45;color:var(--light-60);
+}
+.bill-verdict b{color:var(--paper);font-weight:600}
+.bill-verdict .big{color:#F08A7C}
+
+.bill-foot{
+  display:flex;flex-wrap:wrap;gap:16px;align-items:center;
+  padding:clamp(20px,2.6vw,26px) clamp(22px,3vw,32px);
+  border-top:1px solid var(--light-line);background:rgba(240,169,60,.07);
+}
+.bill-foot p{font-size:15.6px;line-height:1.5;color:var(--light-60);max-width:64ch}
+.bill-foot b{color:var(--paper);font-weight:600}
+
+/* ============================================================
+   VALUE
+   ============================================================ */
+.worth{background:var(--paper);padding:clamp(60px,8vw,104px) 0}
+.worth-head{max-width:54ch;margin-bottom:clamp(34px,5vw,54px)}
+.worth-head h2{margin:16px 0 16px}
+.worth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.worth-grid{grid-template-columns:1fr}}
+.worth-card{border:1px solid var(--line);border-radius:22px;padding:clamp(24px,2.8vw,32px)}
+.worth-card h3{font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:-.02em;margin-bottom:10px}
+.worth-card p{font-size:15px;line-height:1.5;color:var(--ink-60)}
+.worth-card .tag{
+  display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ember);margin-bottom:12px;
+}
+
+/* upload/download demo strip */
+.sym{
+  margin-top:clamp(34px,4.5vw,50px);
+  border:1px solid var(--line);border-radius:22px;overflow:hidden;
+}
+.sym-row{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:700px){.sym-row{grid-template-columns:1fr}}
+.sym-cell{padding:clamp(24px,2.8vw,32px)}
+.sym-cell + .sym-cell{border-left:1px solid var(--line)}
+@media(max-width:700px){.sym-cell + .sym-cell{border-left:none;border-top:1px solid var(--line)}}
+.sym-name{font-size:12px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-35);margin-bottom:16px}
+.sym-pair{display:flex;flex-direction:column;gap:12px}
+.sym-bar{display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--ink-60)}
+.sym-bar .lab{width:5.5em;flex:none}
+.sym-track{flex:1;height:14px;border-radius:7px;background:rgba(22,40,58,.08);overflow:hidden}
+.sym-fill{height:100%;border-radius:7px}
+.sym-fill.down{background:var(--ink-35)}
+.sym-fill.up-cable{background:#D6544A}
+.sym-fill.up-fiber{background:#4FB587}
+.sym-note{margin-top:16px;font-size:14px;line-height:1.5;color:var(--ink-60)}
+.sym-note b{color:var(--ink);font-weight:600}
+
+/* ============================================================
+   CLOSE
+   ============================================================ */
+.v5-close{background:var(--dusk);color:var(--paper);padding:clamp(56px,8vw,96px) 0 40px}
+.v5-close-in{text-align:center;max-width:42ch;margin:0 auto clamp(40px,5vw,58px)}
+.v5-close h2{color:var(--paper);margin-bottom:16px}
+.v5-close .lede{margin:0 auto 30px}
+.v5-fine{
+  font-size:12px;color:rgba(244,246,245,.30);max-width:76ch;
+  margin-top:22px;line-height:1.55;
+}
