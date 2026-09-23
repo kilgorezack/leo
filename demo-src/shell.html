@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <!-- ============================================================
-     GENERATED FILE — do not edit /astac.html by hand.
+     GENERATED FILE — do not edit this page by hand.
 
-     Source lives in demo-src/astac/ (shell.html, body.html,
-     theme.css, app.js). Rebuild with:
+     Source lives in demo-src/shell.html (this lock screen) and
+     demo-src/<slug>/ (meta.json, body.html, theme.css, app.js).
+     Rebuild with:
 
-       node tools/build-astac.mjs "<password>"
+       node tools/build-demo.mjs <slug> "<password>"
 
      The page below ships only a lock screen and an encrypted
      blob. The demo markup, styles and script are inside that
@@ -26,15 +27,11 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
   body{
-    font-family:'Roboto',ui-sans-serif,system-ui,-apple-system,sans-serif;
+    font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
     background:#0F1720;color:#E8ECF0;font-size:16px;line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
@@ -107,7 +104,7 @@
   'use strict';
 
   var ITER = {{ITER}};
-  var KEY  = 'astac-demo-pw';
+  var KEY  = 'demo-pw:{{KEY}}';
 
   var form = document.getElementById('gateForm'),
       pw   = document.getElementById('pw'),

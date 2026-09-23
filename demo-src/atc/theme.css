@@ -1,0 +1,176 @@
+/* ============================================================
+   ATC COMMUNICATIONS — brand skin for the "year of evenings" page.
+
+   A pure override layer. It loads *after* /assets/styles.css and
+   /assets/v2.css and does nothing but re-point the brand tokens
+   and repaint the places that hard-code a colour. Neither
+   original file is touched.
+
+   Palette lifted from atcnet.net:
+     #C10016  ATC red        #870316  deeper red
+     #3B3D43  charcoal       #6F7685  grey
+
+   The one structural move: ATC is a light, white-page brand, so
+   the year grid is flipped from the original dark treatment to a
+   light one. That happens by redefining the "light on dark"
+   tokens inside .year-sec — see THE YEAR below.
+   ============================================================ */
+
+:root{
+  /* ---- the six brand tokens ---- */
+  --dusk:#2B2D33;        /* charcoal — primary dark */
+  --night:#191A1E;       /* near-black — the dark sections */
+  --haze:#F2F3F5;        /* pale grey wash — light section bg */
+  --paper:#FFFFFF;       /* lightest surface */
+  --lamp:#C10016;        /* ATC red — the accent */
+  --go:#2E9E6B;          /* green — 'this is working' */
+  --ember:#870316;       /* deeper red — hover / pressed */
+
+  /* ---- brand extras used below ---- */
+  --grey:#6F7685;
+  --slate:#3B3D43;       /* their dark grey — 'lost the evening' */
+  --amber:#DF9A22;       /* rough */
+
+  --ink:#23252B;
+  --ink-60:rgba(35,37,43,.68);
+  --ink-35:rgba(35,37,43,.44);
+  --line:rgba(35,37,43,.14);
+  --light-60:rgba(255,255,255,.70);
+  --light-35:rgba(255,255,255,.44);
+  --light-line:rgba(255,255,255,.17);
+
+  /* ATC runs DM Sans over Open Sans — so does this */
+  --display:'DM Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --body:'Open Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;
+}
+
+/* DM Sans sets tighter than the original display face — ease off */
+.d1{font-weight:800;letter-spacing:-.028em;line-height:1.0}
+.d2{font-weight:800;letter-spacing:-.022em;line-height:1.06}
+.d3{font-weight:700;letter-spacing:-.015em}
+.tally b,.worth-card .num,.worth-card h3{letter-spacing:-.02em}
+
+/* red buttons carry white text, not charcoal */
+.btn{color:#fff}
+.btn:hover{background:var(--ember);color:#fff}
+.skip-link{color:#fff}
+
+/* ============================================================
+   NAV — ATC runs a white header
+   ============================================================ */
+.nav{
+  background:rgba(255,255,255,.95);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{height:76px}
+.logo-img{height:40px;width:auto;flex:none}
+.nav-links a{color:var(--slate);font-weight:600}
+.nav-links a:hover{color:var(--lamp)}
+.nav-links .btn,.nav-links .btn:hover{color:#fff}
+
+.demo-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--lamp);background:rgba(193,0,22,.07);
+  border:1px solid rgba(193,0,22,.2);border-radius:4px;padding:6px 11px;
+}
+@media(max-width:980px){.demo-tag{display:none}}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.v2-hero{
+  background:
+    radial-gradient(105% 80% at 16% 4%, rgba(193,0,22,.32) 0%, transparent 56%),
+    radial-gradient(70% 55% at 95% 10%, rgba(193,0,22,.14) 0%, transparent 60%),
+    linear-gradient(176deg,var(--night) 0%,var(--dusk) 100%);
+}
+/* the four-diamond mark, used as a rule under the headline */
+.rule-mark{width:38px;height:38px;color:var(--lamp);margin:0 0 24px}
+
+/* ============================================================
+   THE YEAR — flipped to a light treatment.
+
+   The widget's markup is written for a dark section: its text and
+   hairlines reference --light-60 / --light-35 / --light-line and
+   --paper. Redefining those four inside .year-sec inverts the whole
+   thing in one move, and the rest below is just the handful of
+   rules that hard-code a dark-surface colour.
+   ============================================================ */
+.year-sec{
+  /* var(--haze), never var(--paper) — the redefinition below applies to
+     this element's own declarations too, and would paint it near-black */
+  background:var(--haze);
+  color:var(--ink);
+
+  --paper:#1B1D22;                  /* what was 'bright text' is now near-black */
+  --light-60:rgba(27,29,34,.70);
+  --light-35:rgba(27,29,34,.48);
+  --light-line:rgba(27,29,34,.13);
+}
+.year{background:#fff;box-shadow:0 1px 3px rgba(35,37,43,.05)}
+.year-set{background:#FAFAFB}
+.seg{background:rgba(35,37,43,.06)}
+.seg-b.on{color:#fff}
+.chip{background:#fff}
+.chip:hover{border-color:rgba(193,0,22,.45)}
+.chip.on{background:rgba(193,0,22,.07)}
+
+.view-switch{background:rgba(35,37,43,.05)}
+/* the competitor tab goes charcoal on light, not salmon on dark */
+.view-b.on[data-view="dish"]{
+  background:rgba(59,61,67,.1);color:var(--slate);
+  box-shadow:inset 0 0 0 1.5px rgba(59,61,67,.28);
+}
+.view-b.on[data-view="ours"]{background:var(--lamp);color:#fff}
+.view-b.on[data-view="ours"] svg{color:#fff}
+
+/* ---- grid: green fine, amber rough, blacked-out charcoal lost.
+   ATC red stays on the controls — a brand colour shouldn't be the
+   one painting the competitor's good nights, or its bad ones. ---- */
+.cell{background:#E5E8EC}
+.sw-clean,.cell.s0{background:var(--go)}
+.sw-rough,.cell.s1{background:var(--amber)}
+.sw-lost,.cell.s2{background:var(--slate)}
+
+.tally{background:#fff}
+.tally.lost b{color:var(--slate)}
+.tally.rough b{color:#B87A10}
+.tally.clean b{color:#1F7D52}
+
+.log li.lost .what{color:var(--slate)}
+.log li.ok .what{color:#1F7D52}
+
+.flip{background:rgba(193,0,22,.055)}
+
+/* ============================================================
+   VALUE BEATS
+   ============================================================ */
+.worth{background:#FFFFFF}
+.worth-card{
+  background:#fff;border-color:var(--line);
+  box-shadow:0 1px 3px rgba(35,37,43,.05);
+}
+.worth-card .num{color:var(--lamp)}
+.worth-card h3{color:var(--ink)}
+
+.split{background:#fff;border-color:var(--line)}
+.split-row{border-color:var(--line)}
+.split-row.head{background:rgba(35,37,43,.045);color:var(--slate)}
+.split-row.head > div:last-child{color:var(--lamp);font-weight:700}
+.split .yes b{color:var(--lamp);font-weight:700}
+
+/* ============================================================
+   CLOSE
+   ============================================================ */
+.v2-close{
+  background:
+    radial-gradient(85% 65% at 50% 0%, rgba(193,0,22,.28) 0%, transparent 62%),
+    var(--night);
+}
+.foot-bar a:hover{color:var(--lamp)}
+.foot-logo{height:42px;width:auto;margin:0 auto 22px}
+.foot-note{
+  font-size:12px;line-height:1.5;color:var(--light-35);
+  max-width:74ch;margin-top:18px;
+}

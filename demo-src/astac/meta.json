@@ -1,0 +1,9 @@
+{
+  "title": "365 nights on the Slope. Let’s count them. — ASTAC",
+  "theme_color": "#001D38",
+  "css_links": [
+    "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap",
+    "/assets/styles.css?v=2",
+    "/assets/v2.css?v=2"
+  ]
+}

@@ -1,0 +1,216 @@
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ══════════════ NAV ══════════════ -->
+<header class="nav">
+  <div class="shell nav-in">
+    <a href="https://www.atcnet.net/" class="logo" aria-label="ATC Communications — home">
+      <img class="logo-img" src="/assets/atc-mark.png" alt="ATC Communications" width="200" height="87">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <span class="demo-tag" aria-label="This is a concept demo, not an official ATC page">Concept demo</span>
+      <a href="https://www.atcnet.net/internet/">Residential</a>
+      <a href="https://www.atcnet.net/business/">Business</a>
+      <a href="https://www.atcnet.net/support/">Support</a>
+      <a href="#year" class="btn btn-sm">Play your year</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="v2-hero">
+  <div class="shell">
+    <p class="eyebrow on-dark">The long view</p>
+    <h1 class="d1">365 nights out here. Let's count them.</h1>
+    <!-- ATC's four-diamond mark, borrowed as a rule -->
+    <svg class="rule-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 1.8 16.4 6.2 12 10.6 7.6 6.2Z M6.2 7.6 10.6 12 6.2 16.4 1.8 12Z M17.8 7.6 22.2 12 17.8 16.4 13.4 12Z M12 13.4 16.4 17.8 12 22.2 7.6 17.8Z"/>
+    </svg>
+    <p class="lede">A clear evening in July is an easy night to win. Every service ever sold out here wins that one. The question is the other three hundred and sixty-four — the storm that parks over the valley in March, the Sunday everybody's home, the night the whole house is on it at once. So here's the whole year, one square at a time.</p>
+  </div>
+</section>
+
+<!-- ══════════════ THE YEAR ══════════════ -->
+<section class="year-sec" id="year">
+  <div class="shell">
+    <div class="year">
+
+      <!-- setup -->
+      <div class="year-set">
+        <div>
+          <span class="set-lab" id="regLab">Where you live</span>
+          <div class="seg" role="group" aria-labelledby="regLab" id="regions"></div>
+        </div>
+        <div>
+          <span class="set-lab" id="actLab">What your evenings involve</span>
+          <div class="chips" role="group" aria-labelledby="actLab" id="acts"></div>
+        </div>
+        <div class="year-run">
+          <button class="btn" id="play">Play my year
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 3l9 5-9 5V3Z" fill="currentColor"/></svg>
+          </button>
+          <span class="run-note" id="runNote">365 evenings, about four seconds.</span>
+        </div>
+      </div>
+
+      <!-- grid -->
+      <div class="year-body">
+        <div class="year-top">
+          <div class="view-switch" role="group" aria-label="Which service to show">
+            <button class="view-b on" data-view="dish" aria-pressed="true">
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="13.2" r="1.7" fill="currentColor"/>
+                <path d="M5.3 9.9a5.2 5.2 0 0 1 7.4 0M2.7 7a8.9 8.9 0 0 1 12.6 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              A dish on the roof
+            </button>
+            <button class="view-b" data-view="ours" aria-pressed="false">
+              <!-- the four-diamond mark again, at icon size -->
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 1.8 16.4 6.2 12 10.6 7.6 6.2Z M6.2 7.6 10.6 12 6.2 16.4 1.8 12Z M17.8 7.6 22.2 12 17.8 16.4 13.4 12Z M12 13.4 16.4 17.8 12 22.2 7.6 17.8Z"/>
+              </svg>
+              ATC fiber
+            </button>
+          </div>
+          <div class="legend" aria-hidden="true">
+            <span><i class="sw-clean"></i> Fine</span>
+            <span><i class="sw-rough"></i> Rough</span>
+            <span><i class="sw-lost"></i> Lost the evening</span>
+          </div>
+        </div>
+        <p class="year-sub" id="gridSub">Every square is one evening at your place. Press play to run the year.</p>
+
+        <div class="grid-scroll">
+          <div class="grid-inner">
+            <div class="yr-months" id="months" aria-hidden="true"></div>
+            <div class="yr-rows">
+              <div class="yr-days" aria-hidden="true">
+                <span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span>
+              </div>
+              <div class="yr-grid" id="grid" role="img" aria-labelledby="gridA11y"></div>
+            </div>
+          </div>
+        </div>
+        <p class="sr-only" id="gridA11y" aria-live="polite">Press play to run a year of evenings.</p>
+
+        <!-- tallies + log -->
+        <div class="year-out">
+          <div>
+            <div class="tallies">
+              <div class="tally lost"><b id="tLost">—</b><span>Evenings lost</span></div>
+              <div class="tally rough"><b id="tRough">—</b><span>Rough enough to notice</span></div>
+              <div class="tally clean"><b id="tClean">—</b><span>Nobody thought about it</span></div>
+            </div>
+            <p class="verdict-line" id="verdict">Set your year up and press play.</p>
+          </div>
+          <div>
+            <p class="log-head" id="logHead">What went wrong, and when</p>
+            <ul class="log" id="log"></ul>
+            <p class="log-empty" id="logEmpty">The log fills in as the year plays.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- the flip -->
+      <div class="flip">
+        <p id="flipText">Play the year, then switch the two above to run the exact same twelve months on a line that's buried between here and the office in Albion.</p>
+        <button class="btn" id="flip">See the same year on ATC fiber</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ VALUE ══════════════ -->
+<section class="worth">
+  <div class="shell">
+    <div class="worth-head">
+      <p class="eyebrow">What you're actually buying</p>
+      <h2 class="d2">The price is the easy part to compare.</h2>
+      <p class="lede">Two services can cost the same on paper and cost wildly different amounts of your evening. Here's what the sticker doesn't say.</p>
+    </div>
+
+    <div class="worth-grid">
+      <div class="worth-card">
+        <span class="num">$0</span>
+        <h3>The router you don't go buy</h3>
+        <p>A dish gets you one box and a good-luck. Every dead room after that is a mesh unit you research, buy, mount, and re-buy in three years. Here the WiFi 6 router and the app that runs it are part of the plan — coverage isn't an accessory, it's the product.</p>
+      </div>
+      <div class="worth-card">
+        <span class="num">11 hrs</span>
+        <h3>The year you don't spend troubleshooting</h3>
+        <p>Unplug it, wait, plug it back in, run a speed test, search the forum, try again tomorrow. It's twenty minutes here and an hour there, and it adds up to most of a working day.</p>
+      </div>
+      <div class="worth-card">
+        <span class="num">24 hrs</span>
+        <h3>The longest you wait for a person</h3>
+        <p>Not a chat window. Not a replacement in the post with a tracking number. A technician out of Albion, Arco or Malad who will be at your door — and who was probably at your neighbour's last week.</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="split-row head">
+        <div>What an evening actually needs</div>
+        <div>A dish on the roof</div>
+        <div>ATC fiber</div>
+      </div>
+      <div class="split-row">
+        <div class="what">Coverage in the back bedroom</div>
+        <div class="no">Buy your own gear</div>
+        <div class="yes"><span>Included, and we tune it</span></div>
+      </div>
+      <div class="split-row">
+        <div class="what">A night with weather in it</div>
+        <div class="no">The sky gets a vote</div>
+        <div class="yes"><span><b>Buried line</b>, no opinion</span></div>
+      </div>
+      <div class="split-row">
+        <div class="what">8pm, everybody home</div>
+        <div class="no">Evening slowdowns</div>
+        <div class="yes"><span>Built for the busy hour</span></div>
+      </div>
+      <div class="split-row">
+        <div class="what">The month somebody's home all day</div>
+        <div class="no">A cap, and then a conversation</div>
+        <div class="yes"><span><b>Unlimited</b>, and we mean it</span></div>
+      </div>
+      <div class="split-row">
+        <div class="what">Something breaks on a Sunday</div>
+        <div class="no">A form, and a shipping estimate</div>
+        <div class="yes"><span><b>Somebody local</b>, inside 24 hours</span></div>
+      </div>
+      <div class="split-row">
+        <div class="what">Knowing before you do</div>
+        <div class="no">Nobody is watching</div>
+        <div class="yes"><span>We watch it and usually beat you to it</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CLOSE ══════════════ -->
+<footer class="v2-close">
+  <div class="shell">
+    <div class="v2-close-in">
+      <img class="foot-logo" src="/assets/atc-mark-white.png" alt="ATC Communications" width="380" height="166">
+      <h2 class="d2">Now find the one that fits your house.</h2>
+      <p class="lede on-dark">Family-owned in Albion since 1929 — four thousand square miles, five counties, and technicians who live in them.</p>
+      <a href="https://www.atcnet.net/internet/" class="btn">See plans &amp; pricing
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="foot-bar">
+      <span>© 2026 ATC Communications</span>
+      <nav aria-label="Footer">
+        <a href="https://www.atcnet.net/">Home</a>
+        <a href="https://www.atcnet.net/internet/">Internet</a>
+        <a href="https://www.atcnet.net/business/">Business</a>
+        <a href="https://www.atcnet.net/support/">Support</a>
+        <a href="https://www.atcnet.net/about/">About</a>
+      </nav>
+    </div>
+    <p class="foot-note">Concept demo. This page is an unofficial design study prepared for discussion with ATC Communications — it is not an ATC website, and the year it plays out is an illustration built from a simple weather-and-congestion model, not a measurement of any real service. The ATC name and mark belong to ATC Communications.</p>
+  </div>
+</footer>
+
+</main>
